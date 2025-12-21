@@ -1,0 +1,101 @@
+library(shiny)
+library(DT)
+library(shinyWidgets)
+
+ui <- fluidPage(
+  titlePanel("Edouard Data Entry"),
+
+  # Form panel
+  wellPanel(
+    h3("Nouvelle entrée"),
+    fluidRow(
+      column(
+        3,
+        dateInput(
+          "input_date",
+          "Date:",
+          value = Sys.Date()
+        )
+      ),
+      column(
+        3,
+        timeInput(
+          "input_time",
+          "Heure:",
+          value = Sys.time()
+        )
+      ),
+      column(
+        3,
+        selectInput(
+          "input_variable",
+          "Variable:",
+          choices = c(
+            "",
+            "poids",
+            "biberon",
+            "temperature",
+            "taille",
+            "evenement",
+            "symptome"
+          ),
+          selected = ""
+        )
+      )
+    ),
+    fluidRow(
+      column(
+        3,
+        numericInput(
+          "input_value",
+          "Valeur:",
+          value = NA,
+          min = 0
+        )
+      ),
+      column(
+        3,
+        selectInput(
+          "input_unit",
+          "Unité:",
+          choices = c("", "kg", "ml", "c", "cm"),
+          selected = ""
+        )
+      ),
+      column(
+        6,
+        textAreaInput(
+          "input_notes",
+          "Notes:",
+          value = "",
+          rows = 2,
+          placeholder = "Commentaires optionnels..."
+        )
+      )
+    ),
+    fluidRow(
+      column(
+        12,
+        actionButton(
+          "btn_add_preview",
+          "Ajouter au preview",
+          icon = icon("plus"),
+          class = "btn-primary"
+        )
+      )
+    )
+  ),
+
+  # Preview panel
+  wellPanel(
+    h3("Preview des entrées"),
+    DTOutput("preview_table"),
+    br(),
+    actionButton(
+      "btn_save",
+      "Valider et enregistrer",
+      icon = icon("save"),
+      class = "btn-success"
+    )
+  )
+)

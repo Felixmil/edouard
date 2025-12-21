@@ -13,11 +13,14 @@ Imports:
     dplyr,
     tidyr,
     ggplot2,
-    tibble
+    tibble,
+    readr,
+    here
 Suggests:
     testthat,
     DT,
     shiny,
+    shinyWidgets,
     lubridate,
     devtools,
     quarto,
