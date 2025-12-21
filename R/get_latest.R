@@ -108,3 +108,62 @@ get_latest_milk_volume <- function(data) {
     dplyr::slice_max(datetime, n = 1) |>
     dplyr::pull(value)
 }
+
+#' Get Latest Daily Bottle Count
+#'
+#' Calculates the number of bottles consumed on the most recent day in the dataset.
+#'
+#' @param data A data frame containing the measurement data with columns
+#'   `datetime`, `variable`, and `value`.
+#'
+#' @return An integer representing the number of bottles on the latest day.
+#' @export
+#'
+#' @examples
+#' get_latest_daily_bottles(example_data)
+get_latest_daily_bottles <- function(data) {
+  milk_data <- data |> dplyr::filter(variable %in% c("biberon", "milk_volume"))
+  if (nrow(milk_data) == 0) {
+    return(NA_integer_)
+  }
+
+  latest_date <- milk_data |>
+    dplyr::mutate(date_only = as.Date(datetime)) |>
+    dplyr::pull(date_only) |>
+    max(na.rm = TRUE)
+
+  milk_data |>
+    dplyr::mutate(date_only = as.Date(datetime)) |>
+    dplyr::filter(date_only == latest_date) |>
+    nrow()
+}
+
+#' Get Latest Daily Milk Volume
+#'
+#' Calculates the total milk volume consumed on the most recent day in the dataset.
+#'
+#' @param data A data frame containing the measurement data with columns
+#'   `datetime`, `variable`, and `value`.
+#'
+#' @return A numeric value representing the total volume in ml on the latest day.
+#' @export
+#'
+#' @examples
+#' get_latest_daily_volume(example_data)
+get_latest_daily_volume <- function(data) {
+  milk_data <- data |> dplyr::filter(variable %in% c("biberon", "milk_volume"))
+  if (nrow(milk_data) == 0) {
+    return(NA_real_)
+  }
+
+  latest_date <- milk_data |>
+    dplyr::mutate(date_only = as.Date(datetime)) |>
+    dplyr::pull(date_only) |>
+    max(na.rm = TRUE)
+
+  milk_data |>
+    dplyr::mutate(date_only = as.Date(datetime)) |>
+    dplyr::filter(date_only == latest_date) |>
+    dplyr::pull(value) |>
+    sum(na.rm = TRUE)
+}

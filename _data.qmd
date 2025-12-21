@@ -10,9 +10,9 @@ library(tidyr)
 library(reactable)
 ```
 
-### Résumé
-
+::: {.callout-note title='Résumé'}
 Les données sont composées de **`r nrow(data)`** mesures, réparties entre le **`r format(min(data$date),"%d %B %Y")`** et le **`r format(max(data$date),"%d %B %Y")`**, avec **`r n_distinct(data$variable_label)`** types de mesures différentes.
+:::
 
 ### Activité par jour
 
@@ -22,6 +22,8 @@ Les données sont composées de **`r nrow(data)`** mesures, réparties entre le 
 
 plot_activity_equalizer(data)
 ```
+
+### Quantité de donnée par type
 
 ```{r}
 data |>
@@ -35,7 +37,8 @@ data |>
   )
 ```
 
-### Entrées
+### Toutes les données
+
 ```{r}
 reactable(
   select(data, datetime, variable_label, value, unit, notes),

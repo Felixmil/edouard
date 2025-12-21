@@ -2,7 +2,9 @@
 
 ## ⚖️ Poids et Taille
 
+::: {.callout-note title='Résumé'}
 Édouard fait actuellement **`r get_latest_weight(data)`** kg et mesure **`r get_latest_size(data)`** cm.
+:::
 
 ### Evolution du poids et de la taille
 

@@ -2,6 +2,10 @@
 
 ## 🍼 Alimentation
 
+::: {.callout-note title='Résumé'}
+Édouard boit actuellement **`r get_latest_daily_bottles(data)`** biberons par jour, pour un total de **`r get_latest_daily_volume(data)`** ml de lait.
+:::
+
 ### Volume total quotidien
 
 ```{r}
