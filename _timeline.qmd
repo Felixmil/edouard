@@ -6,7 +6,5 @@
 #| fig.width: 10
 #| fig.height: !expr nrow(prepare_timeline_data(data)) * 0.5
 
-library(ggplot2)
-
 plot_timeline(data)
 ```

@@ -16,13 +16,13 @@ prepare_timeline_data <- function(data) {
         variable == "symptome" ~ "Symptôme"
       ),
       type = factor(type, levels = c("Événement", "Symptôme")),
-      side = ifelse(row_number() %% 2 == 1, "left", "right"),
       label = paste0(
         format(datetime, "%d/%m %H:%M"),
-        "\n",
+        ": ",
         notes
       ),
-      x_position = ifelse(side == "left", 0.85, 1.15)
+      x_position = 0.1,
+      time_index = row_number()
     )
 
   return(timeline_data)
@@ -57,37 +57,32 @@ plot_timeline <- function(data) {
   ggplot(timeline_data, aes(y = datetime)) +
     # Vertical central line
     geom_segment(
-      aes(x = 1, xend = 1, y = min(datetime), yend = max(datetime)),
+      aes(x = -0.1, xend = -0.1, y = min(datetime), yend = max(datetime)),
       color = "black",
       linewidth = 1
     ) +
-    # Horizontal segments to labels
-    geom_segment(
-      aes(x = 1, xend = x_position, y = datetime, yend = datetime),
-      color = "grey50",
-      linewidth = 0.3
-    ) +
-    # Points on the line
+    # Points on the line with gradient
     geom_point(
-      aes(x = 1, color = type),
+      aes(x = -0.1, color = time_index),
       size = 4
     ) +
     # Text labels
     geom_text(
-      aes(x = x_position, label = label, hjust = ifelse(side == "left", 1, 0)),
-      size = 5,
-      vjust = 0
+      aes(x = 0, label = label, hjust = 0),
+      size = 4,
+      vjust = 0.5
     ) +
-    # Color scale
-    scale_color_manual(
-      values = c("Événement" = "black", "Symptôme" = "red")
+    # Color gradient scale (dark blue for recent, light blue for old)
+    scale_color_gradient(
+      low = "#B3D9FF",
+      high = "#1E3A5F"
     ) +
-    # Set x-axis limits to prevent text from being cut off
-    scale_x_continuous(limits = c(0, 2), expand = c(0.1, 0.1)) +
+    # Set x-axis limits to center the line
+    scale_x_continuous(limits = c(-1, 1), expand = c(0, 0)) +
+    scale_y_datetime(expand = c(0.1, 0.1)) +
     # Clean theme
     theme_void() +
     theme(
-      legend.position = "none",
-      legend.title = element_blank()
+      legend.position = "none"
     )
 }
