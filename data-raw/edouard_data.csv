@@ -1,5 +1,5 @@
 date,time,variable,value,unit,notes
-2025-12-11,16:27,evenement,,,naissance
+2025-12-11,16:27,evenement,,,Naissance.
 2025-12-11,16:27,poids,2.27,kg,
 2025-12-12,08:30,poids,2.2,kg,
 2025-12-13,08:30,poids,2.18,kg,
@@ -10,7 +10,7 @@ date,time,variable,value,unit,notes
 2025-12-14,08:30,biberon,21,ml,
 2025-12-14,08:30,poids,2.12,kg,
 2025-12-14,11:30,biberon,35,ml,Passage au lait épaissi
-2025-12-14,11:30,evenement,,,Passage au lait épaissi
+2025-12-14,11:30,evenement,,,Passage au lait épaissi.
 2025-12-14,15:00,biberon,32,ml,
 2025-12-14,18:00,biberon,35,ml,
 2025-12-14,19:30,temperature,36.4,c,
@@ -52,7 +52,7 @@ date,time,variable,value,unit,notes
 2025-12-18,07:15,temperature,37,c,
 2025-12-18,07:30,biberon,85,ml,35 minutes
 2025-12-18,10:30,poids,2.23,kg,
-2025-12-18,10:35,evenement,,,Premier bain
+2025-12-18,10:35,evenement,,,Premier bain.
 2025-12-18,11:00,taille,44,cm,
 2025-12-18,11:15,biberon,35,ml,après son premier bain; 20 min
 2025-12-18,14:30,biberon,60,ml,
@@ -66,14 +66,14 @@ date,time,variable,value,unit,notes
 2025-12-19,09:00,biberon,55,ml,
 2025-12-19,12:30,poids,2.23,kg,
 2025-12-19,12:45,biberon,45,ml,
-2025-12-19,13:00,evenement,,,Fin d'utilisation du berceau chauffant
+2025-12-19,13:00,evenement,,,Fin d'utilisation du berceau chauffant.
 2025-12-19,15:30,temperature,36.8,c,première sieste dans berceau non chauffé
 2025-12-19,15:45,biberon,60,ml,
 2025-12-19,19:00,biberon,45,ml,
 2025-12-19,22:30,biberon,70,ml,
 2025-12-20,01:10,biberon,70,ml,30 minutes
 2025-12-20,04:50,biberon,70,ml,nurserie
-2025-12-20,04:40,evenement,,,perte du cordon
+2025-12-20,04:40,evenement,,,Chute du cordon ombilical.
 2025-12-20,08:15,biberon,55,ml,25 minutes
 2025-12-20,11:30,temperature,36.9,c,
 2025-12-20,11:45,poids,2.27,kg,
@@ -90,3 +90,5 @@ date,time,variable,value,unit,notes
 2025-12-21,12:15,biberon,70,ml,sans épaississant
 2025-12-21,15:20,temperature,36.7,c,
 2025-12-21,15:20,biberon,60,ml,"Gros vomi, une tétine taille 0 pourrait mieux convenir."
+2025-12-21,19:00,biberon,66,ml,Tétine NUK
+2025-12-21,12:15,evenement,,,Retour au lait sans épaississant.

@@ -17,7 +17,7 @@ prepare_timeline_data <- function(data) {
       ),
       type = factor(type, levels = c("Événement", "Symptôme")),
       label = paste0(
-        format(datetime, "%d/%m %H:%M"),
+        format(datetime, "%d/%m/%y %H:%M"),
         ": ",
         notes
       ),
