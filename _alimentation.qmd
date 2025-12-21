@@ -27,7 +27,6 @@ ggplot(milk_data, aes(x = datetime, y = value)) +
   # Individual bottle points
   geom_point(color = colors[3], size = 3, alpha = 0.7) +
   labs(
-    x = "Date et heure",
     y = "Volume (ml)"
   ) +
   theme_minimal() +
@@ -80,13 +79,11 @@ ggplot() +
   ) +
   scale_x_date(date_labels = "%d %b", date_breaks = "3 days") +
   labs(
-    x = "Date",
     y = "Temps écoulé (heures)"
   ) +
   theme_minimal() +
   theme(
     plot.title = element_text(face = "bold", size = 14),
-    plot.caption = element_text(hjust = 0, color = "gray40", size = 9),
-    axis.text.x = element_text(angle = 45, hjust = 1)
+    plot.caption = element_text(hjust = 0, color = "gray40", size = 9)
   )
 ```

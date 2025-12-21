@@ -10,7 +10,6 @@ validate_time_format <- function(time_string) {
 }
 
 server <- function(input, output, session) {
-
   # Reactive values to store state
   rv <- reactiveValues(
     preview_data = data.frame(
@@ -26,12 +25,68 @@ server <- function(input, output, session) {
       date = Sys.Date(),
       time = format(Sys.time(), "%H:%M"),
       variable = ""
-    )
+    ),
+    last_save_time = Sys.time()
   )
+
+  # Reactive: Read last 5 entries from CSV
+  last_entries <- reactive({
+    # Trigger on save
+    rv$last_save_time
+
+    csv_path <- here::here("data-raw", "edouard_data.csv")
+
+    if (!file.exists(csv_path)) {
+      return(data.frame(Message = "Aucune donnée disponible"))
+    }
+
+    tryCatch(
+      {
+        data <- readr::read_csv(
+          csv_path,
+          col_types = cols(
+            date = col_character(),
+            time = col_character(),
+            variable = col_character(),
+            value = col_double(),
+            unit = col_character(),
+            notes = col_character()
+          ),
+          show_col_types = FALSE
+        )
+
+        # Get last 5 entries
+        if (nrow(data) > 0) {
+          tail(data, 5)
+        } else {
+          data.frame(Message = "Aucune donnée disponible")
+        }
+      },
+      error = function(e) {
+        data.frame(Message = paste("Erreur:", e$message))
+      }
+    )
+  })
+
+  # Output: Last entries table
+  output$last_entries_table <- renderDT({
+    data <- last_entries()
+
+    datatable(
+      data,
+      options = list(
+        dom = 't',
+        ordering = FALSE,
+        pageLength = 5
+      ),
+      rownames = FALSE
+    )
+  })
 
   # Observer: Auto-select unit based on variable
   observeEvent(input$input_variable, {
-    unit <- switch(input$input_variable,
+    unit <- switch(
+      input$input_variable,
       "poids" = "kg",
       "biberon" = "ml",
       "temperature" = "c",
@@ -62,7 +117,9 @@ server <- function(input, output, session) {
     }
 
     # Check if value is required for this variable type
-    if (input$input_variable %in% c("poids", "biberon", "temperature", "taille")) {
+    if (
+      input$input_variable %in% c("poids", "biberon", "temperature", "taille")
+    ) {
       if (is.null(input$input_value) || is.na(input$input_value)) {
         showNotification(
           paste0("⚠ Une valeur est obligatoire pour ", input$input_variable),
@@ -80,9 +137,21 @@ server <- function(input, output, session) {
       date = as.character(input$input_date),
       time = time_formatted,
       variable = input$input_variable,
-      value = if (is.null(input$input_value) || is.na(input$input_value)) NA_real_ else input$input_value,
-      unit = if (is.null(input$input_unit) || input$input_unit == "") NA_character_ else input$input_unit,
-      notes = if (is.null(input$input_notes) || input$input_notes == "") NA_character_ else input$input_notes,
+      value = if (is.null(input$input_value) || is.na(input$input_value)) {
+        NA_real_
+      } else {
+        input$input_value
+      },
+      unit = if (is.null(input$input_unit) || input$input_unit == "") {
+        NA_character_
+      } else {
+        input$input_unit
+      },
+      notes = if (is.null(input$input_notes) || input$input_notes == "") {
+        NA_character_
+      } else {
+        input$input_notes
+      },
       stringsAsFactors = FALSE
     )
 
@@ -160,50 +229,55 @@ server <- function(input, output, session) {
       return()
     }
 
-    tryCatch({
-      # Construct path to CSV
-      csv_path <- here::here("data-raw", "edouard_data.csv")
+    tryCatch(
+      {
+        # Construct path to CSV
+        csv_path <- here::here("data-raw", "edouard_data.csv")
 
-      # Read existing data
-      existing_data <- readr::read_csv(
-        csv_path,
-        col_types = cols(
-          date = col_character(),
-          time = col_character(),
-          variable = col_character(),
-          value = col_double(),
-          unit = col_character(),
-          notes = col_character()
-        ),
-        show_col_types = FALSE
-      )
+        # Read existing data
+        existing_data <- readr::read_csv(
+          csv_path,
+          col_types = cols(
+            date = col_character(),
+            time = col_character(),
+            variable = col_character(),
+            value = col_double(),
+            unit = col_character(),
+            notes = col_character()
+          ),
+          show_col_types = FALSE
+        )
 
-      # Append new data
-      updated_data <- dplyr::bind_rows(existing_data, rv$preview_data)
+        # Append new data
+        updated_data <- dplyr::bind_rows(existing_data, rv$preview_data)
 
-      # Write back to CSV
-      readr::write_csv(updated_data, csv_path)
+        # Write back to CSV
+        readr::write_csv(updated_data, csv_path, na = "")
 
-      # Rebuild package data
-      rebuild_script <- here::here("data-raw", "edouard_data.R")
-      source(rebuild_script)
+        # Rebuild package data
+        rebuild_script <- here::here("data-raw", "edouard_data.R")
+        source(rebuild_script)
 
-      # Clear preview data
-      rv$preview_data <- rv$preview_data[0, ]
+        # Clear preview data
+        rv$preview_data <- rv$preview_data[0, ]
 
-      # Success notification
-      showNotification(
-        "✓ Données enregistrées et package reconstruit",
-        type = "message",
-        duration = 5
-      )
+        # Trigger refresh of last entries
+        rv$last_save_time <- Sys.time()
 
-    }, error = function(e) {
-      showNotification(
-        paste0("✗ Erreur lors de l'enregistrement : ", e$message),
-        type = "error",
-        duration = NULL
-      )
-    })
+        # Success notification
+        showNotification(
+          "✓ Données enregistrées et package reconstruit",
+          type = "message",
+          duration = 5
+        )
+      },
+      error = function(e) {
+        showNotification(
+          paste0("✗ Erreur lors de l'enregistrement : ", e$message),
+          type = "error",
+          duration = NULL
+        )
+      }
+    )
   })
 }

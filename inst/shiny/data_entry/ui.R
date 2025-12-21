@@ -5,6 +5,12 @@ library(shinyWidgets)
 ui <- fluidPage(
   titlePanel("Edouard Data Entry"),
 
+  # Last entries panel
+  wellPanel(
+    h3("Dernières entrées"),
+    DTOutput("last_entries_table")
+  ),
+
   # Form panel
   wellPanel(
     h3("Nouvelle entrée"),

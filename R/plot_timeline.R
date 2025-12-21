@@ -75,7 +75,7 @@ plot_timeline <- function(data) {
     # Text labels
     geom_text(
       aes(x = x_position, label = label, hjust = ifelse(side == "left", 1, 0)),
-      size = 3,
+      size = 5,
       vjust = 0
     ) +
     # Color scale

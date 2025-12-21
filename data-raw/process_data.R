@@ -47,7 +47,7 @@ process_edouard_data <- function(data) {
       # Add friendly description combining emoji, label, and value
       description = paste0(emoji, " ", variable_label, ": ", value, " ", unit),
       # Title case Notes
-      notes = stringr::str_to_title(notes)
+      notes = stringr::str_to_sentence(notes)
       # Add time of day indicator with emoji
       # time_of_day = dplyr::case_when(
       #   lubridate::hour(time) >= 5 & lubridate::hour(time) < 12 ~ "🌅 Morning",
