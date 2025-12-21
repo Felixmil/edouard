@@ -30,17 +30,8 @@ jobs:
       - name: Install R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          packages: |
-            any::devtools
-            any::rmarkdown
-            any::knitr
-            any::dplyr
-            any::ggplot2
-            any::lubridate
-            any::scales
-            any::plotly
-            any::readr
-            any::here
+          extra-packages: any::devtools
+          dependencies: '"all"'
 
       - name: Render Quarto document
         run: quarto render edouard.qmd -P data_name:edouard_data

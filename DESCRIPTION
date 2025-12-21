@@ -26,6 +26,13 @@ Suggests:
     quarto,
     reactable,
     stringr,
-    devtools,
+    patchwork,
+    htmltools,
+    bslib,
+    bsicons,
+    scales,
+    plotly,
+    rmarkdown,
+    knitr,
 Depends:
     R (>= 3.5)
