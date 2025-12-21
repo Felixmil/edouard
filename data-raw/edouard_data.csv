@@ -1,0 +1,90 @@
+date,time,variable,value,unit,notes
+2025-12-11,16:27,evenement,,,naissance
+2025-12-11,16:27,poids,2.270,kg,
+2025-12-12,08:30,poids,2.200,kg,
+2025-12-13,08:30,poids,2.180,kg,
+2025-12-13,22:30,temperature,39.9,c,
+2025-12-13,23:00,biberon,28,ml,
+2025-12-14,02:00,biberon,22,ml,
+2025-12-14,05:00,biberon,26,ml,
+2025-12-14,08:30,biberon,21,ml,
+2025-12-14,08:30,poids,2.120,kg,
+2025-12-14,11:30,biberon,35,ml,Passage au lait épaissi
+2025-12-14,11:30,evenement,,,Passage au lait épaissi
+2025-12-14,15:00,biberon,32,ml,
+2025-12-14,18:00,biberon,35,ml,
+2025-12-14,19:30,temperature,36.4,c,
+2025-12-14,21:10,biberon,35,ml,
+2025-12-15,00:20,temperature,36.8,c,
+2025-12-15,00:30,biberon,40,ml,
+2025-12-15,04:00,biberon,,,
+2025-12-15,07:15,biberon,50,ml,
+2025-12-15,08:30,poids,2.120,kg,
+2025-12-15,10:15,biberon,45,ml,
+2025-12-15,13:15,temperature,37.3,c,
+2025-12-15,13:30,biberon,55,c,
+2025-12-15,16:40,temperature,37.0,c,
+2025-12-15,17:15,biberon,62,ml,
+2025-12-15,21:00,biberon,40,ml,gros vomi
+2025-12-16,00:00 ,biberon,60,ml,
+2025-12-16,03:45,biberon,60,ml,
+2025-12-16,07:30,temperature,36.8,c,
+2025-12-16,08:00,biberon,50,ml,
+2025-12-16,11:30,poids,2.170,kg,
+2025-12-16,11:45,biberon,60,ml,
+2025-12-16,15:30,biberon,45,ml,
+2025-12-16,19:30,biberon,60,ml,32 minutes
+2025-12-16,23:40,temperature,37.5,c,
+2025-12-16,23:45,biberon,65,ml,
+2025-12-17,02:45,biberon,65,ml,
+2025-12-17,06:30,temperature,37.2,c,
+2025-12-17,06:45,biberon,40,ml,
+2025-12-17,09:30,poids,2.180,kg,
+2025-12-17,09:45,temperature,37.3,c,
+2025-12-17,10:15,biberon,65,ml,
+2025-12-17,13:30,temperature,37.1,c,
+2025-12-17,13:45,biberon,65,ml,
+2025-12-17,17:15,biberon,65,ml,
+2025-12-17,21:00,biberon,65,ml,
+2025-12-18,00:30,temperature,37.1,c,
+2025-12-18,00:45,biberon,75,ml,
+2025-12-18,04:00,biberon,45,ml,nurserie
+2025-12-18,07:15,temperature,37.0,c,
+2025-12-18,07:30,biberon,85,ml,35 minutes
+2025-12-18,10:30,poids,2.230,kg,
+2025-12-18,10:35,evenement,,,Premier bain
+2025-12-18,11:00,taille,44,cm,
+2025-12-18,11:15,biberon,35,ml,après son premier bain; 20 min
+2025-12-18,14:30,biberon,60,ml,
+2025-12-18,14:15,temperature,37.2,c,
+2025-12-18,18:00,biberon,60,ml,37 minutes
+2025-12-18,21:30,biberon,75,ml,
+2025-12-19,01:00,temperature,37.2,ml,
+2025-12-19,01:15,biberon,65,ml,30 minutes
+2025-12-19,05:15,biberon,90,ml,nurserie
+2025-12-19,08:45,temperature, 37.0,c,
+2025-12-19,09:00,biberon,55,ml,
+2025-12-19,12:30,poids,2.230,kg,
+2025-12-19,12:45,biberon,45,ml,
+2025-12-19,13:00,evenement,,,Fin d'utilisation du berceau chauffant
+2025-12-19,15:30,temperature,36.8,c,première sieste dans berceau non chauffé
+2025-12-19,15:45,biberon,60,ml,
+2025-12-19,19:00,biberon,45,ml,
+2025-12-19,22:30,biberon,70,ml,
+2025-12-20,01:10,biberon,70,ml,30 minutes
+2025-12-20,04:50,biberon,70,ml,nurserie
+2025-12-20,04:40,evenement,,,perte du cordon
+2025-12-20,08:15,biberon,55,ml,25 minutes
+2025-12-20,11:30,temperature,36.9,c,
+2025-12-20,11:45,poids,2.270,kg,
+2025-12-20,12:00,biberon,70,ml,
+2025-12-20,15:45,biberon,65,ml,
+2025-12-20,16:45,temperature,36.7,c,
+2025-12-20,19:15,biberon,65,ml,
+2025-12-20,22:40,biberon,70,ml,30 minutes
+2025-12-20,22:00,symptome,,,"oeil gauche irrité, croûte jaune à surveiller"
+2025-12-21,02:30,biberon,65,ml,25 minutes
+2025-12-21,06:00,biberon,70,ml,nurserie
+2025-12-21,09:00,biberon,45,ml,
+2025-12-21,12:00,poids,2.300,kg,
+2025-12-21,12:15,biberon,70,ml,sans épaississant

@@ -1,0 +1,41 @@
+```{css, echo=FALSE}
+h3 {
+  text-align: center;
+}
+```
+
+```{r}
+#| include: false
+# Reusable setup chunk for child documents
+# This ensures child documents can run independently or as includes
+
+Sys.setlocale("LC_ALL", "FR_fr")
+
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.width = 7,
+  fig.asp = 0.618,
+  fig.align = "center"
+)
+
+# Load package functions if not already loaded
+if (!isNamespaceLoaded("edouard")) {
+  devtools::load_all()
+}
+
+# Use params$data_name if provided, otherwise default to example_data
+data_name <- if (exists("params") && !is.null(params$data_name)) {
+  params$data_name
+} else {
+  "example_data" # Default to example data when running interactively
+}
+
+# Load the dataset from the package
+data(list = data_name, envir = environment())
+data <- get(data_name)
+
+message("Using dataset: ", data_name)
+
+```

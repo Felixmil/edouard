@@ -1,0 +1,27 @@
+Package: edouard
+Title: Newborn Data Tracker
+Version: 0.1.0
+Authors@R: 
+    person("Felix", "Parent", , "felix@example.com", role = c("aut", "cre"))
+Description: A package for tracking and visualizing newborn health metrics including milk quantity, temperature, weight, and more. Provides data entry, storage, and visualization capabilities.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports:
+    dplyr,
+    tidyr,
+    ggplot2,
+    tibble
+Suggests:
+    testthat,
+    DT,
+    shiny,
+    lubridate,
+    devtools,
+    quarto,
+    reactable,
+    stringr
+Depends: 
+    R (>= 3.5)

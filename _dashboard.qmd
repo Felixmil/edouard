@@ -1,0 +1,85 @@
+{{< include _setup.qmd >}}
+
+```{css}
+.bslib-card.bslib-value-box {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e0e0e0 !important;
+}
+```
+
+```{r}
+#| include: false
+library(bslib)
+library(lubridate)
+library(htmltools)
+
+# Calculate metrics for last 24 hours
+milk_24h <- get_milk_data(data) |>
+  filter(datetime >= max(datetime) - hours(24))
+
+avg_milk_24h <- milk_24h |>
+  pull(value) |>
+  mean(na.rm = TRUE) |>
+  round(0)
+
+n_bottles_24h <- milk_24h |>
+  nrow()
+
+# Get latest values
+latest_weight <- get_latest_weight(data)
+latest_size <- get_latest_size(data)
+
+# Get dates for display
+latest_weight_date <- get_weight_data(data) |>
+  slice_max(datetime, n = 1) |>
+  pull(datetime)
+
+latest_size_date <- get_size_data(data) |>
+  slice_max(datetime, n = 1) |>
+  pull(datetime)
+```
+
+::: {layout-ncol=2}
+```{r}
+value_box(
+  title = "Poids",
+  value = paste0(latest_weight, " kg"),
+  showcase = bsicons::bs_icon("arrows"),
+  name = "white",
+  p(format(latest_weight_date, "%d/%m/%Y %H:%M"))
+)
+```
+
+```{r}
+value_box(
+  title = "Taille",
+  value = paste0(latest_size, " cm"),
+  showcase = bsicons::bs_icon("arrows-vertical"),
+  theme = "white",
+  p(format(latest_size_date, "%d/%m/%Y %H:%M"))
+)
+```
+
+```{r}
+value_box(
+  title = "Biberons",
+  value = n_bottles_24h,
+  showcase = bsicons::bs_icon("droplet"),
+  theme = "white",
+  p("Sur les 24 dernières heures")
+)
+```
+
+```{r}
+value_box(
+  title = "Volume Moyen",
+  value = paste0(avg_milk_24h, " ml"),
+  showcase = bsicons::bs_icon("moisture"),
+  theme = "white",
+  p("Moyenne sur 24h")
+)
+```
+
+
+:::

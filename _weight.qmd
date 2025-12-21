@@ -1,0 +1,172 @@
+{{< include _setup.qmd >}}
+
+## ⚖️ Poids et Taille
+
+Édouard fait actuellement **`r get_latest_weight(data)`** kg et mesure **`r get_latest_size(data)`** cm.
+
+### Evolution du poids et de la taille
+
+```{r}
+#| fig.width: 12
+#| fig.asp: 0.4
+
+# Réinstaller patchwork si nécessaire pour résoudre les incompatibilités
+library(patchwork)
+
+plot_poids <- get_weight_data(data) |>
+  ggplot(aes(x = date, y = value)) +
+  geom_smooth(method = "loess", color = "black", alpha = 0.4) +
+  geom_point(color = "black", size = 2) +
+  scale_x_date(date_labels = "%d %b %Y") +
+  labs(
+    y = "Poids (kg)",
+    x = NULL,
+    title = "Poids"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.minor.x = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    plot.title = element_text(face = "bold", size = 11)
+  )
+
+plot_taille <- get_size_data(data) |>
+  ggplot(aes(x = date, y = value)) +
+  geom_smooth(method = "loess", color = "black", alpha = 0.4) +
+  geom_point(color = "black", size = 2) +
+  scale_x_date(date_labels = "%d %b %Y") +
+  labs(
+    y = "Taille (cm)",
+    x = NULL,
+    title = "Taille"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.minor.x = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    plot.title = element_text(face = "bold", size = 11)
+  )
+
+plot_poids + plot_taille
+```
+
+### Gain de poids par semaine
+
+
+```{r}
+library(lubridate)
+
+# Obtenir toutes les mesures de poids, triées par date
+raw_data <- get_weight_data(data, arrange_by = "date")
+
+# Obtenir la première et dernière date
+premiere_date <- min(raw_data$date)
+derniere_date <- max(raw_data$date)
+
+# Obtenir le poids à la première mesure
+premier_poids <- raw_data |>
+  filter(date == premiere_date) |>
+  summarise(poids = mean(value, na.rm = TRUE)) |>
+  pull(poids)
+
+# Créer des intervalles de 7 jours à partir de la première mesure
+# On commence à J+7 pour le premier intervalle
+dates_intervalles <- seq(premiere_date + days(7), derniere_date, by = "7 days")
+
+# Si la dernière date n'est pas dans les intervalles, l'ajouter
+if (derniere_date > max(dates_intervalles)) {
+  dates_intervalles <- c(dates_intervalles, derniere_date)
+}
+
+# Pour chaque date d'intervalle, trouver la mesure la plus proche
+weekly_data <- tibble(date_cible = dates_intervalles) |>
+  rowwise() |>
+  mutate(
+    mesure = {
+      # Trouver la mesure la plus proche (dans une fenêtre de ±3 jours)
+      mesures_proches <- raw_data |>
+        mutate(
+          ecart = abs(as.numeric(difftime(date, date_cible, units = "days")))
+        ) |>
+        filter(ecart <= 3) |>
+        arrange(ecart)
+
+      if (nrow(mesures_proches) > 0) {
+        list(tibble(
+          date = mesures_proches$date[1],
+          poids_fin = mesures_proches$value[1]
+        ))
+      } else {
+        list(tibble(date = as.Date(NA), poids_fin = NA_real_))
+      }
+    }
+  ) |>
+  ungroup() |>
+  unnest(mesure) |>
+  filter(!is.na(poids_fin)) |>
+  arrange(date)
+
+# Calculer le poids de début pour chaque intervalle
+# Le premier intervalle compare avec le premier poids
+# Les autres intervalles comparent avec le poids de fin de l'intervalle précédent
+weekly_data <- weekly_data |>
+  mutate(
+    poids_debut = if_else(
+      row_number() == 1,
+      premier_poids,
+      lag(poids_fin)
+    ),
+    gain_hebdomadaire = (poids_fin - poids_debut) * 1000
+  ) |>
+  filter(!is.na(gain_hebdomadaire))
+
+weekly_data |>
+  ggplot(aes(
+    x = date,
+    y = gain_hebdomadaire,
+    fill = gain_hebdomadaire > 0
+  )) +
+  geom_col(width = 2, alpha = 0.85) +
+  geom_text(
+    aes(
+      label = sprintf("%+.0f g", gain_hebdomadaire),
+      y = ifelse(gain_hebdomadaire > 0, gain_hebdomadaire, gain_hebdomadaire)
+    ),
+    vjust = ifelse(weekly_data$gain_hebdomadaire > 0, -0.5, 1.5),
+    size = 3,
+    fontface = "bold"
+  ) +
+  geom_hline(
+    yintercept = 0,
+    linetype = "solid",
+    color = "gray30",
+    linewidth = 0.5
+  ) +
+  scale_fill_manual(
+    values = c("TRUE" = "#99E380", "FALSE" = "#FF9999"),
+    labels = c("Gain", "Perte")
+  ) +
+  scale_x_date(
+    breaks = unique(weekly_data$date),
+    date_labels = "%d %b %Y"
+  ) +
+  scale_y_continuous(
+    breaks = seq(
+      floor(min(weekly_data$gain_hebdomadaire) / 100) * 100,
+      ceiling(max(weekly_data$gain_hebdomadaire) / 100) * 100,
+      by = 100
+    )
+  ) +
+  labs(
+    y = "Gain hebdomadaire (g)",
+    x = NULL,
+    fill = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    plot.title = element_text(face = "bold", size = 12)
+  )
+```

@@ -1,0 +1,92 @@
+{{< include _setup.qmd >}}
+
+## 🍼 Alimentation
+
+
+### Volume par biberon
+```{r}
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+
+# Filter for milk quantity data
+milk_data <- get_milk_data(data)
+
+# Create the plot with trend line and confidence interval
+colors <- edouard_colors()
+ggplot(milk_data, aes(x = datetime, y = value)) +
+  # Confidence interval (shows expected range)
+  geom_smooth(
+    method = "loess",
+    span = 0.3,
+    color = colors[1],
+    fill = colors[1],
+    alpha = 0.2,
+    linewidth = 1
+  ) +
+  # Individual bottle points
+  geom_point(color = colors[3], size = 3, alpha = 0.7) +
+  labs(
+    x = "Date et heure",
+    y = "Volume (ml)"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    plot.caption = element_text(hjust = 0, color = "gray40", size = 9)
+  )
+```
+
+### Temps entre biberons
+```{r}
+# Calculate time intervals between bottles
+intervals_data <- milk_data |>
+  arrange(datetime) |>
+  mutate(
+    time_diff = as.numeric(difftime(datetime, lag(datetime), units = "hours")),
+    date_only = as.Date(datetime)
+  ) |>
+  filter(!is.na(time_diff))
+
+# Calculate daily averages for each day
+daily_avg <- intervals_data |>
+  group_by(date_only) |>
+  summarise(
+    avg_interval = mean(time_diff, na.rm = TRUE),
+    n_bottles = n(),
+    .groups = "drop"
+  )
+
+# Create plot with intervals by date and daily average line
+ggplot() +
+  # Individual interval points grouped by day
+  geom_point(
+    data = intervals_data,
+    aes(x = date_only, y = time_diff),
+    color = colors[3],
+    size = 2.5,
+    alpha = 0.6
+  ) +
+  # Daily average line with confidence interval
+  geom_smooth(
+    data = daily_avg,
+    aes(x = date_only, y = avg_interval),
+    method = "loess",
+    span = 0.5,
+    color = colors[1],
+    fill = colors[1],
+    alpha = 0.2,
+    linewidth = 1.2
+  ) +
+  scale_x_date(date_labels = "%d %b", date_breaks = "3 days") +
+  labs(
+    x = "Date",
+    y = "Temps écoulé (heures)"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    plot.caption = element_text(hjust = 0, color = "gray40", size = 9),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+```

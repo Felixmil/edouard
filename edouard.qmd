@@ -1,0 +1,21 @@
+---
+title: "Édouard"
+params:
+  data_name: "edouard_data"
+---
+
+{{< include _setup.qmd >}}
+
+{{< include _dashboard.qmd >}}
+
+::: {.panel-tabset}
+
+{{< include _weight.qmd >}}
+
+{{< include _alimentation.qmd >}}
+
+{{< include _timeline.qmd >}}
+
+{{< include _data.qmd >}}
+
+:::

@@ -1,0 +1,57 @@
+
+{{< include _setup.qmd >}}
+
+## 📊 Données
+
+```{r}
+# Load packages needed for this document
+library(dplyr)
+library(tidyr)
+library(reactable)
+```
+
+### Résumé
+
+Les données sont composées de **`r nrow(data)`** mesures, réparties entre le **`r format(min(data$date),"%d %B %Y")`** et le **`r format(max(data$date),"%d %B %Y")`**, avec **`r n_distinct(data$variable_label)`** types de mesures différentes.
+
+### Activité par jour
+
+```{r}
+#| fig.width: 12
+#| fig.asp: 0.4
+
+plot_activity_equalizer(data)
+```
+
+```{r}
+data |>
+  group_by(variable_label) |>
+  count() |>
+  reactable(
+    columns = list(
+      variable_label = colDef(name = "Mesure"),
+      n = colDef(name = "Nombre")
+    )
+  )
+```
+
+### Entrées
+```{r}
+reactable(
+  select(data, datetime, variable_label, value, unit, notes),
+  sortable = TRUE,
+  filterable = TRUE,
+  searchable = TRUE,
+  columns = list(
+    datetime = colDef(
+      name = "Heure",
+      format = colFormat(datetime = TRUE)
+    ),
+    variable_label = colDef(name = "Mesure", ),
+    value = colDef(name = "Valeur"),
+    unit = colDef(name = "Unité"),
+    notes = colDef(name = "Notes")
+  )
+)
+
+```
