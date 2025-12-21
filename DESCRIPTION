@@ -1,7 +1,7 @@
 Package: edouard
 Title: Newborn Data Tracker
 Version: 0.1.0
-Authors@R: 
+Authors@R:
     person("Felix", "Parent", , "felix@example.com", role = c("aut", "cre"))
 Description: A package for tracking and visualizing newborn health metrics including milk quantity, temperature, weight, and more. Provides data entry, storage, and visualization capabilities.
 License: MIT + file LICENSE
@@ -25,6 +25,7 @@ Suggests:
     devtools,
     quarto,
     reactable,
-    stringr
-Depends: 
+    stringr,
+    devtools,
+Depends:
     R (>= 3.5)

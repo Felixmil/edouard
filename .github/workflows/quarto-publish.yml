@@ -39,6 +39,8 @@ jobs:
             any::lubridate
             any::scales
             any::plotly
+            any::readr
+            any::here
 
       - name: Render Quarto document
         run: quarto render edouard.qmd -P data_name:edouard_data
