@@ -19,4 +19,6 @@ params:
 
 {{< include _data.qmd >}}
 
+{{< include _about.qmd >}}
+
 :::

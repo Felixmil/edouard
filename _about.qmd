@@ -1,0 +1,19 @@
+{{< include _setup.qmd >}}
+
+## ℹ️ À propos
+
+::: {style="text-align: center; margin-top: 2em;"}
+![](https://avatars.githubusercontent.com/u/34234913?v=4){width=150 style="border-radius: 50%; border: 3px solid #e0e0e0;"}
+
+### Félix Mil
+
+Ce tableau de bord a été créé par [Félix Mil](https://github.com/Felixmil) pour suivre la croissance et le développement d'Édouard.
+
+Le code source est disponible sur [GitHub](https://github.com/Felixmil/edouard).
+
+---
+
+::: {style="font-size: 0.9em; color: #666; margin-top: 2em;"}
+Construit avec [Quarto](https://quarto.org/) et [R](https://www.r-project.org/)
+:::
+:::
