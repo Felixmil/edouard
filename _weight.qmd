@@ -9,11 +9,9 @@
 ### Evolution du poids et de la taille
 
 ```{r}
-#| fig.width: 12
-#| fig.asp: 0.4
-
-# Réinstaller patchwork si nécessaire pour résoudre les incompatibilités
-library(patchwork)
+#| fig.width: 6
+#| fig.asp: 0.6
+#| layout-ncol: 2
 
 plot_poids <- get_weight_data(data) |>
   ggplot(aes(x = date, y = value)) +
@@ -49,7 +47,8 @@ plot_taille <- get_size_data(data) |>
     plot.title = element_text(face = "bold", size = 11)
   )
 
-plot_poids + plot_taille
+plot_poids
+plot_taille
 ```
 
 ### Gain de poids par semaine
