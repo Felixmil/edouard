@@ -111,12 +111,12 @@ get_latest_milk_volume <- function(data) {
 
 #' Get Latest Daily Bottle Count
 #'
-#' Calculates the number of bottles consumed on the most recent day in the dataset.
+#' Calculates the number of bottles consumed in the last 24 hours.
 #'
 #' @param data A data frame containing the measurement data with columns
 #'   `datetime`, `variable`, and `value`.
 #'
-#' @return An integer representing the number of bottles on the latest day.
+#' @return An integer representing the number of bottles in the last 24 hours.
 #' @export
 #'
 #' @examples
@@ -127,25 +127,25 @@ get_latest_daily_bottles <- function(data) {
     return(NA_integer_)
   }
 
-  latest_date <- milk_data |>
-    dplyr::mutate(date_only = as.Date(datetime)) |>
-    dplyr::pull(date_only) |>
+  latest_datetime <- milk_data |>
+    dplyr::pull(datetime) |>
     max(na.rm = TRUE)
 
+  cutoff_datetime <- latest_datetime - lubridate::hours(24)
+
   milk_data |>
-    dplyr::mutate(date_only = as.Date(datetime)) |>
-    dplyr::filter(date_only == latest_date) |>
+    dplyr::filter(datetime >= cutoff_datetime) |>
     nrow()
 }
 
 #' Get Latest Daily Milk Volume
 #'
-#' Calculates the total milk volume consumed on the most recent day in the dataset.
+#' Calculates the total milk volume consumed in the last 24 hours.
 #'
 #' @param data A data frame containing the measurement data with columns
 #'   `datetime`, `variable`, and `value`.
 #'
-#' @return A numeric value representing the total volume in ml on the latest day.
+#' @return A numeric value representing the total volume in ml in the last 24 hours.
 #' @export
 #'
 #' @examples
@@ -156,14 +156,14 @@ get_latest_daily_volume <- function(data) {
     return(NA_real_)
   }
 
-  latest_date <- milk_data |>
-    dplyr::mutate(date_only = as.Date(datetime)) |>
-    dplyr::pull(date_only) |>
+  latest_datetime <- milk_data |>
+    dplyr::pull(datetime) |>
     max(na.rm = TRUE)
 
+  cutoff_datetime <- latest_datetime - lubridate::hours(24)
+
   milk_data |>
-    dplyr::mutate(date_only = as.Date(datetime)) |>
-    dplyr::filter(date_only == latest_date) |>
+    dplyr::filter(datetime >= cutoff_datetime) |>
     dplyr::pull(value) |>
     sum(na.rm = TRUE)
 }

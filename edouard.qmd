@@ -1,6 +1,6 @@
 ---
 title: "Édouard"
-date-modified: now
+subtitle: "Dernière màj: `r Sys.setlocale('LC_TIME', 'fr_FR.UTF-8'); format(Sys.time(), '%A %d %B %Y à %H:%M')`"
 params:
   data_name: "edouard_data"
 ---
