@@ -97,5 +97,6 @@ process_edouard_data <- function(data) {
       description,
       notes,
       dplyr::everything()
-    )
+    ) |>
+    dplyr::arrange(datetime)
 }
