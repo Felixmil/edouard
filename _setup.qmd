@@ -9,7 +9,7 @@ h3 {
 # Reusable setup chunk for child documents
 # This ensures child documents can run independently or as includes
 
-Sys.setlocale("LC_ALL", "FR_fr")
+locale <- Sys.setlocale("LC_ALL", "FR_fr")
 
 knitr::opts_chunk$set(
   echo = FALSE,
@@ -37,5 +37,4 @@ data(list = data_name, envir = environment())
 data <- get(data_name)
 
 message("Using dataset: ", data_name)
-
 ```
