@@ -107,3 +107,6 @@ date,time,variable,value,unit,notes
 2025-12-22,21:00,evenement,,,"Passage au lait avec épaississant ""Magic Mix"" 1%."
 2025-12-19,19:00,evenement,,,Constipation
 2025-12-22,18:00,evenement,,,Nombreuses régurgitations
+2025-12-23,11:45,poids,0,kg,
+2025-12-23,12:00,biberon,80,ml,
+2025-12-23,16:05,biberon,90,ml,
