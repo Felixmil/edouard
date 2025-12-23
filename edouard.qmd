@@ -1,6 +1,7 @@
 ---
 title: "Édouard"
 date-modified: now
+date-format: "dddd D MMMM YYYY à HH:mm"
 lang: fr
 language:
   title-block-modified: "Mise à jour"
