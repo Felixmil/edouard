@@ -4,7 +4,7 @@ date-modified: now
 date-format: "dddd D MMMM YYYY à HH:mm"
 lang: fr
 language:
-  title-block-modified: "Mise à jour"
+  title-block-modified: "Dernière mise à jour:"
 params:
   data_name: "edouard_data"
 ---
