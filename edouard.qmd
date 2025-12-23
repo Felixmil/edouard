@@ -9,11 +9,6 @@ params:
   data_name: "edouard_data"
 ---
 
-
-```{r}
-print(Sys.getlocale())
-```
-
 {{< include _setup.qmd >}}
 
 {{< include _dashboard.qmd >}}

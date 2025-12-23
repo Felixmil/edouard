@@ -11,7 +11,6 @@ Ce tableau de bord a été créé par [Félix Mil](https://github.com/Felixmil) 
 
 Le code source est disponible sur [GitHub](https://github.com/Felixmil/edouard).
 
----
 
 ::: {style="font-size: 0.9em; color: #666; margin-top: 2em;"}
 Construit avec [Quarto](https://quarto.org/) et [R](https://www.r-project.org/)

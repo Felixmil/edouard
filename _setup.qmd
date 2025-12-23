@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
   fig.align = "center"
 )
 
+locale <- Sys.setlocale("LC_ALL", locale = "fr_FR")
+
 # Load package functions if not already loaded
 if (!isNamespaceLoaded("edouard")) {
   devtools::load_all()

@@ -7,33 +7,15 @@
 library(dplyr)
 library(tidyr)
 library(reactable)
-
-locale <- Sys.setlocale("LC_ALL", locale = "fr_FR.UTF-8")
 ```
 
 ::: {.callout-note title='Résumé'}
-Les données sont composées de **`
-r
-nrow(data)
-`** mesures, réparties entre le **`
-r
-format(min(data$date), "%d %B %Y")
-`** et le **`
-r
-format(max(data$date), "%d %B %Y")
-`**, avec **`
-r
-n_distinct(data$variable_label)
-`** types de mesures différentes.
+Les données sont composées de **`r nrow(data)`** mesures, réparties entre le **`r format(min(data$date), "%d %B %Y")`** et le **`r format(max(data$date), "%d %B %Y")`**, avec **`r n_distinct(data$variable_label)`** types de mesures différentes.
 :::
 
 ### Activité par jour
 
-`
-``
-{
-  r
-}
+```{r}
 #| fig.width: 12
 #| fig.asp: 0.4
 
