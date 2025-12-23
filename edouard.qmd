@@ -11,7 +11,7 @@ params:
 
 
 ```{r}
-locale <- Sys.setlocale("LC_ALL", locale = "fr_FR.UTF-8")
+print(Sys.getlocale())
 ```
 
 {{< include _setup.qmd >}}
