@@ -13,7 +13,7 @@
 #| fig.asp: 0.6
 #| layout-ncol: 2
 
-locale <- Sys.setlocale("LC_ALL", "fr_FR")
+locale <- Sys.setlocale("LC_ALL", locale = "fr_FR.UTF-8")
 
 plot_poids <- get_weight_data(data) |>
   ggplot(aes(x = date, y = value)) +

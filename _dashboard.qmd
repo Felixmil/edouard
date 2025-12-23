@@ -17,7 +17,7 @@ library(bslib)
 library(lubridate)
 library(htmltools)
 
-locale <- Sys.setlocale("LC_ALL", "fr_FR")
+locale <- Sys.setlocale("LC_ALL", locale = "fr_FR.UTF-8")
 
 # Calculate metrics for last 24 hours
 milk_24h <- get_milk_data(data) |>
