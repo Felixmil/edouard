@@ -1,3 +1,6 @@
+---
+lang: fr
+---
 
 {{< include _setup.qmd >}}
 
