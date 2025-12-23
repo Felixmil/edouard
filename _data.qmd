@@ -1,4 +1,3 @@
-
 {{< include _setup.qmd >}}
 
 ## 📊 Données
@@ -8,6 +7,8 @@
 library(dplyr)
 library(tidyr)
 library(reactable)
+
+locale <- Sys.setlocale("LC_ALL", "fr_FR")
 ```
 
 ::: {.callout-note title='Résumé'}

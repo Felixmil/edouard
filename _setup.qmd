@@ -9,8 +9,6 @@ h3 {
 # Reusable setup chunk for child documents
 # This ensures child documents can run independently or as includes
 
-locale <- Sys.setlocale("LC_ALL", "FR_fr")
-
 knitr::opts_chunk$set(
   echo = FALSE,
   message = FALSE,

@@ -9,6 +9,11 @@ params:
   data_name: "edouard_data"
 ---
 
+
+```{r}
+locale <- Sys.setlocale("LC_ALL", "fr_FR")
+```
+
 {{< include _setup.qmd >}}
 
 {{< include _dashboard.qmd >}}

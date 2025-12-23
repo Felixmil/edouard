@@ -13,6 +13,8 @@ library(dplyr)
 library(ggplot2)
 library(lubridate)
 
+locale <- Sys.setlocale("LC_ALL", "fr_FR")
+
 # Filter for milk quantity data
 milk_data <- get_milk_data(data)
 
