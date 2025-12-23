@@ -1,5 +1,5 @@
 ---
-title: "Édouard"
+title: "Édouard M."
 date-modified: now
 date-format: "dddd D MMMM YYYY à HH:mm"
 lang: fr
