@@ -21,8 +21,13 @@ prepare_timeline_data <- function(data) {
         ": ",
         notes
       ),
-      x_position = 0.1,
-      time_index = row_number()
+      time_index = row_number(),
+      # Alternate labels left and right
+      side = ifelse(time_index %% 2 == 0, "right", "left"),
+      x_position = ifelse(side == "right", 0.1, -0.1),
+      hjust = ifelse(side == "right", 0, 1),
+      # Wrap long notes at 40 characters
+      label_wrapped = stringr::str_wrap(label, width = 60)
     )
 
   return(timeline_data)
@@ -57,28 +62,29 @@ plot_timeline <- function(data) {
   ggplot(timeline_data, aes(y = datetime)) +
     # Vertical central line
     geom_segment(
-      aes(x = -0.1, xend = -0.1, y = min(datetime), yend = max(datetime)),
+      aes(x = 0, xend = 0, y = min(datetime), yend = max(datetime)),
       color = "black",
       linewidth = 1
     ) +
     # Points on the line with gradient
     geom_point(
-      aes(x = -0.1, color = time_index),
+      aes(x = 0, color = time_index),
       size = 4
     ) +
-    # Text labels
+    # Text labels (wrapped)
     geom_text(
-      aes(x = 0, label = label, hjust = 0),
-      size = 4,
-      vjust = 0.5
+      aes(x = x_position, label = label_wrapped, hjust = hjust),
+      size = 3.5,
+      vjust = 0.5,
+      lineheight = 0.9
     ) +
     # Color gradient scale (dark blue for recent, light blue for old)
     scale_color_gradient(
       low = "#B3D9FF",
       high = "#1E3A5F"
     ) +
-    # Set x-axis limits to center the line
-    scale_x_continuous(limits = c(-1, 1), expand = c(0, 0)) +
+    # Set x-axis limits to accommodate both sides
+    scale_x_continuous(limits = c(-1.5, 1.5), expand = c(0, 0)) +
     scale_y_datetime(expand = c(0.1, 0.1)) +
     # Clean theme
     theme_void() +
