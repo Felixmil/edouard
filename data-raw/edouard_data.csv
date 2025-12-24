@@ -3,7 +3,7 @@ date,time,variable,value,unit,notes
 2025-12-11,16:27,poids,2.27,kg,
 2025-12-12,08:30,poids,2.2,kg,
 2025-12-13,08:30,poids,2.18,kg,
-2025-12-13,22:30,temperature,39.9,c,
+2025-12-13,22:30,temperature,36.9,c,
 2025-12-13,23:00,biberon,28,ml,
 2025-12-14,02:00,biberon,22,ml,
 2025-12-14,05:00,biberon,26,ml,
@@ -105,8 +105,8 @@ date,time,variable,value,unit,notes
 2025-12-23,03:45,biberon,60,ml,nurserie
 2025-12-23,08:00,biberon,70,ml,
 2025-12-22,21:00,evenement,,,"Passage au lait avec épaississant ""Magic Mix"" 1%."
-2025-12-19,19:00,evenement,,,Constipation
-2025-12-22,18:00,evenement,,,Nombreuses régurgitations
+2025-12-19,19:00,symptome,,,Constipation
+2025-12-22,18:00,symptome,,,Nombreuses régurgitations
 2025-12-23,11:45,poids,2.38,kg,
 2025-12-23,12:00,biberon,80,ml,
 2025-12-23,16:05,biberon,90,ml,
@@ -114,3 +114,6 @@ date,time,variable,value,unit,notes
 2025-12-23,20:00,biberon,75,ml,
 2025-12-23,23:00,biberon,85,ml,
 2025-12-24,04:00,biberon,90,ml,
+2025-12-24,07:30,temperature,36.6,c,
+2025-12-24,05:30,symptome,,,"Constipation, douleurs intestinales"
+2025-12-24,05:30,symptome,,,"Ecoulements et petites croutes jaune à l'oeil droit"
