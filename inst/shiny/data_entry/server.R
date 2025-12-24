@@ -29,43 +29,20 @@ server <- function(input, output, session) {
     last_save_time = Sys.time()
   )
 
-  # Reactive: Read last 5 entries from CSV
+  # Reactive: Get last 5 entries from package data
   last_entries <- reactive({
     # Trigger on save
     rv$last_save_time
 
-    csv_path <- here::here("data-raw", "edouard_data.csv")
+    # Use the package data directly
+    data <- edouard::edouard_data |>
+      dplyr::mutate(
+        date = as.character(date),
+        time = as.character(time)
+      )
 
-    if (!file.exists(csv_path)) {
-      return(data.frame(Message = "Aucune donnée disponible"))
-    }
-
-    tryCatch(
-      {
-        data <- readr::read_csv(
-          csv_path,
-          col_types = cols(
-            date = col_character(),
-            time = col_character(),
-            variable = col_character(),
-            value = col_double(),
-            unit = col_character(),
-            notes = col_character()
-          ),
-          show_col_types = FALSE
-        )
-
-        # Get last 5 entries
-        if (nrow(data) > 0) {
-          tail(data, 5)
-        } else {
-          data.frame(Message = "Aucune donnée disponible")
-        }
-      },
-      error = function(e) {
-        data.frame(Message = paste("Erreur:", e$message))
-      }
-    )
+    # Get last 5 entries
+    tail(data, 5)
   })
 
   # Output: Last entries table
@@ -229,55 +206,44 @@ server <- function(input, output, session) {
       return()
     }
 
-    tryCatch(
-      {
-        # Construct path to CSV
-        csv_path <- here::here("data-raw", "edouard_data.csv")
+    # Construct path to CSV
+    csv_path <- here::here("data-raw", "edouard_data.csv")
 
-        # Read existing data
-        existing_data <- readr::read_csv(
-          csv_path,
-          col_types = cols(
-            date = col_character(),
-            time = col_character(),
-            variable = col_character(),
-            value = col_double(),
-            unit = col_character(),
-            notes = col_character()
-          ),
-          show_col_types = FALSE
-        )
+    # Read existing data
+    existing_data <- readr::read_csv(
+      csv_path,
+      col_types = cols(
+        date = col_character(),
+        time = col_character(),
+        variable = col_character(),
+        value = col_double(),
+        unit = col_character(),
+        notes = col_character()
+      ),
+      show_col_types = FALSE
+    )
 
-        # Append new data
-        updated_data <- dplyr::bind_rows(existing_data, rv$preview_data)
+    # Append new data
+    updated_data <- dplyr::bind_rows(existing_data, rv$preview_data)
 
-        # Write back to CSV
-        readr::write_csv(updated_data, csv_path, na = "")
+    # Write back to CSV
+    readr::write_csv(updated_data, csv_path, na = "")
 
-        # Rebuild package data
-        rebuild_script <- here::here("data-raw", "edouard_data.R")
-        source(rebuild_script)
+    # Rebuild package data
+    rebuild_script <- here::here("data-raw", "edouard_data.R")
+    source(rebuild_script)
 
-        # Clear preview data
-        rv$preview_data <- rv$preview_data[0, ]
+    # Clear preview data
+    rv$preview_data <- rv$preview_data[0, ]
 
-        # Trigger refresh of last entries
-        rv$last_save_time <- Sys.time()
+    # Trigger refresh of last entries
+    rv$last_save_time <- Sys.time()
 
-        # Success notification
-        showNotification(
-          "✓ Données enregistrées et package reconstruit",
-          type = "message",
-          duration = 5
-        )
-      },
-      error = function(e) {
-        showNotification(
-          paste0("✗ Erreur lors de l'enregistrement : ", e$message),
-          type = "error",
-          duration = NULL
-        )
-      }
+    # Success notification
+    showNotification(
+      "✓ Données enregistrées et package reconstruit",
+      type = "message",
+      duration = 5
     )
   })
 }
