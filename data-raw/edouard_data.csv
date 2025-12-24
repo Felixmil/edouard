@@ -116,4 +116,6 @@ date,time,variable,value,unit,notes
 2025-12-24,04:00,biberon,90,ml,
 2025-12-24,07:30,temperature,36.6,c,
 2025-12-24,05:30,symptome,,,"Constipation, douleurs intestinales"
-2025-12-24,05:30,symptome,,,"Ecoulements et petites croutes jaune à l'oeil droit"
+2025-12-24,05:30,symptome,,,Ecoulements et petites croutes jaune à l'oeil droit
+2025-12-24,12:30,poids,2.49,kg,
+2025-12-24,11:15,biberon,77,ml,
