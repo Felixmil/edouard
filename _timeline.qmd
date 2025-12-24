@@ -1,6 +1,6 @@
 {{< include _setup.qmd >}}
 
-## 📅 Chronologie
+## 📅 Événements
 
 ```{r}
 #| fig.width: 10

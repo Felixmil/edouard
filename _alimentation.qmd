@@ -34,7 +34,7 @@ daily_volume <- milk_data |>
 ggplot(daily_volume, aes(x = date_only, y = total_volume)) +
   # Bars for daily totals
   geom_col(
-    fill = colors[2],
+    fill = colors[3],
     alpha = 0.7,
     width = 0.8
   ) +
@@ -43,7 +43,8 @@ ggplot(daily_volume, aes(x = date_only, y = total_volume)) +
     aes(label = paste0(round(total_volume), " ml")),
     vjust = -0.5,
     size = 3,
-    color = "gray30"
+    color = "gray30",
+    fontface = "bold"
   ) +
   scale_x_date(date_labels = "%d %b", date_breaks = "3 days") +
   scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
