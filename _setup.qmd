@@ -15,7 +15,8 @@ knitr::opts_chunk$set(
   warning = FALSE,
   fig.width = 7,
   fig.asp = 0.618,
-  fig.align = "center"
+  fig.align = "center",
+  out.width = "80%"
 )
 
 locale <- Sys.setlocale("LC_ALL", locale = "fr_FR")

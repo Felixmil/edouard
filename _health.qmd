@@ -2,32 +2,6 @@
 
 ## 🏥 Santé
 
-### Symptômes
-
-```{r}
-library(reactable)
-
-symptomes_data <- data |>
-  dplyr::filter(variable == "symptome") |>
-  dplyr::arrange(dplyr::desc(datetime))
-
-if (nrow(symptomes_data) > 0) {
-  symptomes_data |>
-    dplyr::select(datetime, notes) |>
-    reactable(
-      sortable = TRUE,
-      columns = list(
-        datetime = colDef(
-          name = "Date et heure",
-          format = colFormat(datetime = TRUE)
-        ),
-        notes = colDef(name = "Description")
-      )
-    )
-} else {
-  cat("Aucun symptôme enregistré.")
-}
-```
 
 ### Températures
 
@@ -84,5 +58,33 @@ if (nrow(temp_data) > 0) {
     )
 } else {
   cat("Aucune donnée de température à afficher.")
+}
+```
+
+
+### Symptômes
+
+```{r}
+library(reactable)
+
+symptomes_data <- data |>
+  dplyr::filter(variable == "symptome") |>
+  dplyr::arrange(dplyr::desc(datetime))
+
+if (nrow(symptomes_data) > 0) {
+  symptomes_data |>
+    dplyr::select(datetime, notes) |>
+    reactable(
+      sortable = TRUE,
+      columns = list(
+        datetime = colDef(
+          name = "Date et heure",
+          format = colFormat(datetime = TRUE)
+        ),
+        notes = colDef(name = "Description")
+      )
+    )
+} else {
+  cat("Aucun symptôme enregistré.")
 }
 ```

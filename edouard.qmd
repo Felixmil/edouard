@@ -5,8 +5,15 @@ date-format: "dddd D MMMM YYYY à HH:mm"
 lang: fr
 language:
   title-block-modified: "Dernière mise à jour:"
+format:
+  html:
+    theme: flatly
+    page-layout: full
+    fig-format: retina
+lightbox: true
 params:
   data_name: "edouard_data"
+
 ---
 
 {{< include _setup.qmd >}}
