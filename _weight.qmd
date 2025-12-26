@@ -32,7 +32,7 @@ plot_poids <- get_weight_data(data) |>
 
 plot_taille <- get_size_data(data) |>
   ggplot(aes(x = date, y = value)) +
-  geom_smooth(method = "loess", color = "black", alpha = 0.4) +
+  geom_line(color = "black", alpha = 0.4) +
   geom_point(color = "black", size = 2) +
   scale_x_date(date_labels = "%d %b %Y") +
   labs(
@@ -127,7 +127,7 @@ weekly_data |>
     y = gain_hebdomadaire,
     fill = gain_hebdomadaire > 0
   )) +
-  geom_col(width = 2, alpha = 0.85) +
+  geom_col(width = 0.95, alpha = 0.85, color = "white") +
   geom_text(
     aes(
       label = sprintf("%+.0f g", gain_hebdomadaire),
