@@ -9,12 +9,18 @@
 #| fig.width: 8
 #| fig.asp: 0.5
 
+library(ggiraph)
+
 temp_data <- get_temperature_data(data)
 
 if (nrow(temp_data) > 0) {
   colors <- edouard_colors()
 
-  temp_data |>
+  plot_temp <- temp_data |>
+    mutate(
+      tooltip = if_else(!is.na(notes), notes, ""),
+      has_notes = !is.na(notes)
+    ) |>
     ggplot(aes(x = datetime, y = value)) +
     # Zone bleue pour températures trop basses (< 36.5°C)
     annotate(
@@ -46,7 +52,18 @@ if (nrow(temp_data) > 0) {
       linewidth = 1
     ) +
     # Points de mesure
-    geom_point(color = "grey40", size = 3) +
+    geom_point_interactive(
+      aes(tooltip = tooltip, data_id = datetime, color = has_notes),
+      fill = "grey40",
+      size = 2.5,
+      stroke = 1,
+      shape = 21,
+      hover_nearest = TRUE
+    ) +
+    scale_color_manual(
+      values = c("TRUE" = "black", "FALSE" = "grey40"),
+      guide = "none"
+    ) +
     scale_x_datetime(date_labels = "%d %b") +
     labs(
       y = "Température (°C)",
@@ -56,6 +73,11 @@ if (nrow(temp_data) > 0) {
     theme(
       panel.grid.minor = element_blank()
     )
+
+  girafe(
+    ggobj = plot_temp,
+    options = list(opts_sizing(rescale = TRUE, width = .8))
+  )
 } else {
   cat("Aucune donnée de température à afficher.")
 }

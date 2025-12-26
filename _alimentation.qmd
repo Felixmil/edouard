@@ -62,8 +62,14 @@ ggplot(daily_volume, aes(x = date_only, y = total_volume)) +
 
 ### Volume par biberon
 ```{r}
+library(ggiraph)
 
-ggplot(milk_data, aes(x = datetime, y = value)) +
+plot_volume <- milk_data |>
+  mutate(
+    tooltip = if_else(!is.na(notes), notes, ""),
+    has_notes = !is.na(notes)
+  ) |>
+  ggplot(aes(x = datetime, y = value)) +
   # Confidence interval (shows expected range)
   geom_smooth(
     method = "loess",
@@ -74,7 +80,18 @@ ggplot(milk_data, aes(x = datetime, y = value)) +
     linewidth = 1
   ) +
   # Individual bottle points
-  geom_point(color = colors[3], size = 3, alpha = 0.7) +
+  geom_point_interactive(
+    aes(tooltip = tooltip, data_id = datetime, color = has_notes),
+    fill = colors[3],
+    size = 2.5,
+    stroke = 0.5,
+    shape = 21,
+    hover_nearest = TRUE
+  ) +
+  scale_color_manual(
+    values = c("TRUE" = "#04538cff", "FALSE" = colors[3]),
+    guide = "none"
+  ) +
   labs(
     y = "Volume (ml)",
     x = NULL
@@ -84,6 +101,11 @@ ggplot(milk_data, aes(x = datetime, y = value)) +
     plot.title = element_text(face = "bold", size = 14),
     plot.caption = element_text(hjust = 0, color = "gray40", size = 9)
   )
+
+girafe(
+  ggobj = plot_volume,
+  options = list(opts_sizing(rescale = TRUE, width = .8))
+)
 ```
 
 ### Temps entre les biberons
@@ -107,15 +129,12 @@ daily_avg <- intervals_data |>
   )
 
 # Create plot with intervals by date and daily average line
-ggplot() +
-  # Individual interval points grouped by day
-  geom_point(
-    data = intervals_data,
-    aes(x = date_only, y = time_diff),
-    color = colors[3],
-    size = 2.5,
-    alpha = 0.6
-  ) +
+plot_intervals <- intervals_data |>
+  mutate(
+    tooltip = if_else(!is.na(notes), notes, ""),
+    has_notes = !is.na(notes)
+  ) |>
+  ggplot() +
   # Daily average line with confidence interval
   geom_smooth(
     data = daily_avg,
@@ -127,6 +146,26 @@ ggplot() +
     alpha = 0.2,
     linewidth = 1.2
   ) +
+  # Individual interval points grouped by day
+  geom_point_interactive(
+    aes(
+      x = date_only,
+      y = time_diff,
+      tooltip = tooltip,
+      data_id = datetime,
+      color = has_notes
+    ),
+    fill = colors[3],
+    size = 2.5,
+    stroke = 0.5,
+    shape = 21,
+    hover_nearest = TRUE
+  ) +
+
+  scale_color_manual(
+    values = c("TRUE" = "#04538cff", "FALSE" = colors[3]),
+    guide = "none"
+  ) +
   scale_x_date(date_labels = "%d %b", date_breaks = "3 days") +
   labs(
     y = "Temps écoulé (heures)",
@@ -137,4 +176,9 @@ ggplot() +
     plot.title = element_text(face = "bold", size = 14),
     plot.caption = element_text(hjust = 0, color = "gray40", size = 9)
   )
+
+girafe(
+  ggobj = plot_intervals,
+  options = list(opts_sizing(rescale = TRUE, width = .8))
+)
 ```

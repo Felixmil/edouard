@@ -69,11 +69,11 @@ layout_columns(
     p("Sur les 24 dernières heures")
   ),
   value_box(
-    title = "Volume Moyen",
+    title = "Volume par biberon",
     value = paste0(avg_milk_24h, " ml"),
     showcase = bsicons::bs_icon("moisture"),
     theme = "white",
-    p("Moyenne sur 24h")
+    p("Moyenne sur les dernières 24h")
   )
 )
 ```
