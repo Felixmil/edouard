@@ -34,5 +34,6 @@ Suggests:
     plotly,
     rmarkdown,
     knitr,
-Depends: 
+    ggiraph,
+Depends:
     R (>= 3.5)
