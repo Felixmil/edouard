@@ -144,3 +144,6 @@ date,time,variable,value,unit,notes
 2025-12-27,02:00,biberon,70,ml,15 minutes
 2025-12-27,05:47,biberon,80,ml,
 2025-12-27,09:00,biberon,90,ml,20 minutes
+2025-12-27,13:20,poids,2.58,kg,
+2025-12-27,13:30,biberon,40,ml,s'est endormi en plein milieu
+2025-12-27,16:45,biberon,90,ml,15 minutes
