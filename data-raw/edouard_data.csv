@@ -155,3 +155,19 @@ date,time,variable,value,unit,notes
 2025-12-28,17:45,biberon,45,ml,
 2025-12-28,17:30,evenement,,,Bain
 2025-12-28,17:20,poids,2.65,kg,
+2025-12-28,21:33,biberon,90,ml,
+2025-12-28,21:00,evenement,,,Premier sortie en écharpe de portage (dans le couloir de la maternité)
+2025-12-29,02:23,biberon,85,ml,
+2025-12-29,07:20,biberon,85,ml,
+2025-12-29,11:20,biberon,90,ml,
+2025-12-29,16:00,biberon,35,ml,Premier biberon à la maison
+2025-12-29,18:15,biberon,75,ml,
+2025-12-29,22:45,biberon,85,ml,
+2025-12-30,02:20,biberon,40,ml,
+2025-12-30,07:20,biberon,40,ml,
+2025-12-30,09:00,temperature,36.7,c,
+2025-12-30,11:05,biberon,85,ml,
+2025-12-30,15:00,biberon,60,ml,
+2025-12-30,18:30,biberon,90,ml,
+2025-12-29,14:30,evenement,,,Arrivée à la maison
+2025-12-29,14:15,evenement,,,"Premier trajet en voiture, calme"
