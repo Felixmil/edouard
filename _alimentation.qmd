@@ -9,10 +9,6 @@ Au cours des 24 dernières heures, Édouard a bu **`r get_latest_daily_bottles(d
 ### Volume total quotidien
 
 ```{r}
-library(dplyr)
-library(ggplot2)
-library(lubridate)
-
 # Filter for milk quantity data
 milk_data <- get_milk_data(data)
 
@@ -62,8 +58,6 @@ ggplot(daily_volume, aes(x = date_only, y = total_volume)) +
 
 ### Volume par biberon
 ```{r}
-library(ggiraph)
-
 plot_volume <- milk_data |>
   mutate(
     tooltip = if_else(!is.na(notes), notes, ""),

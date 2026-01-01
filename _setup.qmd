@@ -21,6 +21,18 @@ knitr::opts_chunk$set(
 
 locale <- Sys.setlocale("LC_ALL", locale = "fr_FR")
 
+# Load Quarto-specific libraries (Suggests dependencies)
+library(bslib)
+library(htmltools)
+library(reactable)
+library(ggiraph)
+library(here)
+
+# Load required packages for data reading and manipulation
+library(readr)
+library(lubridate)
+library(ggplot2)
+
 # Load package functions if not already loaded
 if (!isNamespaceLoaded("edouard")) {
   devtools::load_all()
@@ -33,9 +45,25 @@ data_name <- if (exists("params") && !is.null(params$data_name)) {
   "example_data" # Default to example data when running interactively
 }
 
-# Load the dataset from the package
-data(list = data_name, envir = environment())
-data <- get(data_name)
+# Determine CSV file path based on data_name
+csv_file <- here("data-raw", paste0(data_name, ".csv"))
 
-message("Using dataset: ", data_name)
+# Read and process the CSV data directly
+data_raw <- read_csv(
+  csv_file,
+  col_types = cols(
+    date = col_date(format = "%Y-%m-%d"),
+    time = col_time(format = "%H:%M"),
+    variable = col_character(),
+    value = col_double(),
+    unit = col_character(),
+    notes = col_character()
+  ),
+  show_col_types = FALSE
+)
+
+# Process the data with human-readable enhancements
+data <- process_edouard_data(data_raw)
+
+message("Using dataset from CSV: ", csv_file)
 ```

@@ -67,8 +67,6 @@ plot_taille
 
 
 ```{r}
-library(lubridate)
-
 # Obtenir toutes les mesures de poids, triées par date
 raw_data <- get_weight_data(data, arrange_by = "date")
 

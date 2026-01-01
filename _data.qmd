@@ -2,13 +2,6 @@
 
 ## 📊 Données
 
-```{r}
-# Load packages needed for this document
-library(dplyr)
-library(tidyr)
-library(reactable)
-```
-
 ::: {.callout-note title='Résumé'}
 Les données sont composées de **`r nrow(data)`** mesures, réparties entre le **`r format(min(data$date), "%d %B %Y")`** et le **`r format(max(data$date), "%d %B %Y")`**, avec **`r n_distinct(data$variable_label)`** types de mesures différentes.
 :::

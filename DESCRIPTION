@@ -11,29 +11,31 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Imports:
     dplyr,
-    tidyr,
     ggplot2,
-    tibble,
-    readr,
-    here
-Suggests:
-    testthat,
-    DT,
-    shiny,
-    shinyWidgets,
     lubridate,
+    purrr,
+    readr,
+    rlang,
+    stringr,
+    tibble,
+    tidyr
+Suggests:
+    bsicons,
+    bslib,
     devtools,
+    DT,
+    ggiraph,
+    here,
+    htmltools,
+    knitr,
+    patchwork,
+    plotly,
     quarto,
     reactable,
-    stringr,
-    patchwork,
-    htmltools,
-    bslib,
-    bsicons,
-    scales,
-    plotly,
     rmarkdown,
-    knitr,
-    ggiraph,
+    scales,
+    shiny,
+    shinyWidgets,
+    testthat
 Depends:
     R (>= 3.5)

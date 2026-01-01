@@ -9,8 +9,6 @@
 #| fig.width: 8
 #| fig.asp: 0.5
 
-library(ggiraph)
-
 temp_data <- get_temperature_data(data)
 
 if (nrow(temp_data) > 0) {
@@ -87,8 +85,6 @@ if (nrow(temp_data) > 0) {
 ### Symptômes
 
 ```{r}
-library(reactable)
-
 symptomes_data <- data |>
   dplyr::filter(variable == "symptome") |>
   dplyr::arrange(dplyr::desc(datetime))

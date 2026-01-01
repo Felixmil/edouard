@@ -13,11 +13,6 @@
 
 ```{r}
 #| include: false
-library(bslib)
-library(lubridate)
-library(htmltools)
-
-
 # Calculate metrics for last 24 hours
 milk_24h <- get_milk_data(data) |>
   filter(datetime >= max(datetime) - hours(24))
