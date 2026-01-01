@@ -7,6 +7,7 @@
 #'
 #' @return A processed data frame with additional columns:
 #'   \itemize{
+#'     \item datetime: Combined date and time as POSIXct
 #'     \item emoji: Variable-specific emoji (🍼 for milk_volume, 🌡️ for temperature, etc.)
 #'     \item variable_label: Human-readable variable names
 #'     \item description: Friendly text combining emoji, label, and value
@@ -14,7 +15,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' raw_data <- read_csv("data-raw/edouard_data.csv")
+#' raw_data <- read.csv("data-raw/edouard_data.csv")
 #' processed_data <- process_edouard_data(raw_data)
 #' }
 #'

@@ -29,17 +29,26 @@ server <- function(input, output, session) {
     last_save_time = Sys.time()
   )
 
-  # Reactive: Get last 5 entries from package data
+  # Reactive: Get last 5 entries from CSV
   last_entries <- reactive({
     # Trigger on save
     rv$last_save_time
 
-    # Use the package data directly
-    data <- edouard::edouard_data |>
-      dplyr::mutate(
-        date = as.character(date),
-        time = as.character(time)
-      )
+    # Read from CSV directly
+    csv_path <- here::here("data-raw", "edouard_data.csv")
+
+    data <- readr::read_csv(
+      csv_path,
+      col_types = cols(
+        date = col_character(),
+        time = col_character(),
+        variable = col_character(),
+        value = col_double(),
+        unit = col_character(),
+        notes = col_character()
+      ),
+      show_col_types = FALSE
+    )
 
     # Get last 5 entries
     tail(data, 5)
@@ -198,7 +207,7 @@ server <- function(input, output, session) {
     }
   })
 
-  # Observer: Save to CSV and rebuild package
+  # Observer: Save to CSV
   observeEvent(input$btn_save, {
     # Check if there's data to save
     if (nrow(rv$preview_data) == 0) {
@@ -229,10 +238,6 @@ server <- function(input, output, session) {
     # Write back to CSV
     readr::write_csv(updated_data, csv_path, na = "")
 
-    # Rebuild package data
-    rebuild_script <- here::here("data-raw", "edouard_data.R")
-    source(rebuild_script)
-
     # Clear preview data
     rv$preview_data <- rv$preview_data[0, ]
 
@@ -241,7 +246,7 @@ server <- function(input, output, session) {
 
     # Success notification
     showNotification(
-      "✓ Données enregistrées et package reconstruit",
+      "✓ Données enregistrées dans le CSV",
       type = "message",
       duration = 5
     )

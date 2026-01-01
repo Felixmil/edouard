@@ -5,8 +5,8 @@ library(dplyr)
 library(lubridate)
 library(here)
 
-# Load the processing function
-source(here("data-raw", "process_data.R"))
+# Load package to access processing function
+devtools::load_all()
 
 # Read the example CSV data
 example_data <- read_csv(
