@@ -77,6 +77,7 @@ server <- function(input, output, session) {
       "biberon" = "ml",
       "temperature" = "c",
       "taille" = "cm",
+      "selle" = "texture",
       "evenement" = "",
       "symptome" = "",
       ""
@@ -102,44 +103,75 @@ server <- function(input, output, session) {
       return()
     }
 
-    # Check if value is required for this variable type
-    if (
-      input$input_variable %in% c("poids", "biberon", "temperature", "taille")
-    ) {
-      if (is.null(input$input_value) || is.na(input$input_value)) {
-        showNotification(
-          paste0("⚠ Une valeur est obligatoire pour ", input$input_variable),
-          type = "warning"
-        )
+    # Handle selle-specific validation and data construction
+    if (input$input_variable == "selle") {
+      # Validate texture (always provided by slider) and color
+      if (is.null(input$input_color) || input$input_color == "") {
+        showNotification("⚠ La couleur est obligatoire pour selle", type = "warning")
         return()
       }
+
+      # Convert timeInput to HH:MM format
+      time_formatted <- substr(as.character(input$input_time), 1, 5)
+
+      # Construct notes with color prefix
+      notes_base <- paste0("Couleur: ", input$input_color)
+      notes_full <- if (!is.null(input$input_notes_selle) && input$input_notes_selle != "") {
+        paste0(notes_base, "; ", input$input_notes_selle)
+      } else {
+        notes_base
+      }
+
+      # Create new entry for selle
+      new_entry <- data.frame(
+        date = as.character(input$input_date),
+        time = time_formatted,
+        variable = "selle",
+        value = as.numeric(input$input_texture),
+        unit = "texture",
+        notes = notes_full,
+        stringsAsFactors = FALSE
+      )
+    } else {
+      # Check if value is required for this variable type
+      if (
+        input$input_variable %in% c("poids", "biberon", "temperature", "taille")
+      ) {
+        if (is.null(input$input_value) || is.na(input$input_value)) {
+          showNotification(
+            paste0("⚠ Une valeur est obligatoire pour ", input$input_variable),
+            type = "warning"
+          )
+          return()
+        }
+      }
+
+      # Convert timeInput to HH:MM format (timeInput returns character "HH:MM:SS")
+      time_formatted <- substr(as.character(input$input_time), 1, 5)
+
+      # Create new entry for non-selle variables
+      new_entry <- data.frame(
+        date = as.character(input$input_date),
+        time = time_formatted,
+        variable = input$input_variable,
+        value = if (is.null(input$input_value) || is.na(input$input_value)) {
+          NA_real_
+        } else {
+          input$input_value
+        },
+        unit = if (is.null(input$input_unit) || input$input_unit == "") {
+          NA_character_
+        } else {
+          input$input_unit
+        },
+        notes = if (is.null(input$input_notes) || input$input_notes == "") {
+          NA_character_
+        } else {
+          input$input_notes
+        },
+        stringsAsFactors = FALSE
+      )
     }
-
-    # Convert timeInput to HH:MM format (timeInput returns character "HH:MM:SS")
-    time_formatted <- substr(as.character(input$input_time), 1, 5)
-
-    # Create new entry
-    new_entry <- data.frame(
-      date = as.character(input$input_date),
-      time = time_formatted,
-      variable = input$input_variable,
-      value = if (is.null(input$input_value) || is.na(input$input_value)) {
-        NA_real_
-      } else {
-        input$input_value
-      },
-      unit = if (is.null(input$input_unit) || input$input_unit == "") {
-        NA_character_
-      } else {
-        input$input_unit
-      },
-      notes = if (is.null(input$input_notes) || input$input_notes == "") {
-        NA_character_
-      } else {
-        input$input_notes
-      },
-      stringsAsFactors = FALSE
-    )
 
     # Add to preview data
     rv$preview_data <- rbind(rv$preview_data, new_entry)
@@ -150,8 +182,12 @@ server <- function(input, output, session) {
     rv$last_entry$variable <- input$input_variable
 
     # Partial form reset (keep date, time, variable; clear value and notes)
-    updateNumericInput(session, "input_value", value = NA)
-    updateTextAreaInput(session, "input_notes", value = "")
+    if (input$input_variable == "selle") {
+      updateTextAreaInput(session, "input_notes_selle", value = "")
+    } else {
+      updateNumericInput(session, "input_value", value = NA)
+      updateTextAreaInput(session, "input_notes", value = "")
+    }
 
     # Success notification
     showNotification("✓ Entrée ajoutée au preview", type = "message")

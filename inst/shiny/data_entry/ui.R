@@ -42,6 +42,7 @@ ui <- fluidPage(
             "biberon",
             "temperature",
             "taille",
+            "selle",
             "evenement",
             "symptome"
           ),
@@ -49,33 +50,83 @@ ui <- fluidPage(
         )
       )
     ),
-    fluidRow(
-      column(
-        3,
-        numericInput(
-          "input_value",
-          "Valeur:",
-          value = NA,
-          min = 0
+    conditionalPanel(
+      condition = "input.input_variable != 'selle'",
+      fluidRow(
+        column(
+          3,
+          numericInput(
+            "input_value",
+            "Valeur:",
+            value = NA,
+            min = 0
+          )
+        ),
+        column(
+          3,
+          selectInput(
+            "input_unit",
+            "Unité:",
+            choices = c("", "kg", "ml", "c", "cm"),
+            selected = ""
+          )
+        ),
+        column(
+          6,
+          textAreaInput(
+            "input_notes",
+            "Notes:",
+            value = "",
+            rows = 2,
+            placeholder = "Commentaires optionnels..."
+          )
         )
-      ),
-      column(
-        3,
-        selectInput(
-          "input_unit",
-          "Unité:",
-          choices = c("", "kg", "ml", "c", "cm"),
-          selected = ""
-        )
-      ),
-      column(
-        6,
-        textAreaInput(
-          "input_notes",
-          "Notes:",
-          value = "",
-          rows = 2,
-          placeholder = "Commentaires optionnels..."
+      )
+    ),
+    conditionalPanel(
+      condition = "input.input_variable == 'selle'",
+      fluidRow(
+        column(
+          3,
+          radioGroupButtons(
+            "input_texture",
+            "Texture:",
+            choices = c(
+              "Dense" = "1",
+              "Normale" = "2",
+              "Mousseuse" = "3",
+              "Liquide" = "4"
+            ),
+            selected = "2",
+            direction = "horizontal"
+          )
+        ),
+        column(
+          3,
+          selectInput(
+            "input_color",
+            "Couleur:",
+            choices = c(
+              "",
+              "marron",
+              "jaune",
+              "vert",
+              "noir",
+              "rouge",
+              "blanc"
+            ),
+            selected = ""
+          )
+        ),
+        column(
+          6,
+          textAreaInput(
+            "input_notes_selle",
+            "Notes:",
+            value = "",
+            rows = 2,
+            placeholder = "Commentaires optionnels..."
+          )
         )
       )
     ),

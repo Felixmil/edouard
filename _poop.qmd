@@ -1,0 +1,132 @@
+{{< include _setup.qmd >}}
+
+## 💩 Selles
+
+::: {.callout-note title='Résumé'}
+```{r}
+selle_data <- get_selle_data(data)
+
+# Count selles in last 24 hours
+if (nrow(selle_data) > 0) {
+  latest_datetime <- max(selle_data$datetime, na.rm = TRUE)
+  cutoff_datetime <- latest_datetime - lubridate::hours(24)
+  selles_24h <- selle_data |>
+    filter(datetime >= cutoff_datetime) |>
+    nrow()
+} else {
+  selles_24h <- 0
+}
+```
+Au cours des 24 dernières heures, Édouard a eu **`r selles_24h`** selles.
+:::
+
+### Fréquence quotidienne
+
+```{r}
+# Calculate daily selle count
+if (nrow(selle_data) > 0) {
+  daily_selles <- selle_data |>
+    mutate(date_only = as.Date(datetime)) |>
+    group_by(date_only) |>
+    summarise(
+      n_selles = n(),
+      .groups = "drop"
+    )
+
+  colors <- edouard_colors()
+
+  ggplot(daily_selles, aes(x = date_only, y = n_selles)) +
+    geom_col(
+      fill = colors[3],
+      alpha = 0.7,
+      width = 0.8
+    ) +
+    geom_text(
+      aes(label = n_selles),
+      vjust = -0.5,
+      size = 3,
+      color = "gray30",
+      fontface = "bold"
+    ) +
+    scale_x_date(date_labels = "%d %b", date_breaks = "1 day") +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.15)), breaks = scales::pretty_breaks()) +
+    labs(
+      y = "Nombre de selles",
+      x = NULL
+    ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(face = "bold", size = 14),
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      axis.text.y = element_blank()
+
+    )
+} else {
+  plot.new()
+  text(0.5, 0.5, "Aucune donnée de selles disponible", cex = 1.2)
+}
+```
+
+### Évolution qualitative
+
+```{r}
+if (nrow(selle_data) > 0) {
+  # Define texture labels
+  texture_labels <- c(
+    "1" = "Dense",
+    "2" = "Normale",
+    "3" = "Mousseuse",
+    "4" = "Liquide"
+  )
+
+  # Define color mapping for French colors
+  color_mapping <- c(
+    "marron" = "#8B4513",
+    "jaune" = "#FFD700",
+    "vert" = "#228B22",
+    "noir" = "#2F4F4F",
+    "rouge" = "#DC143C",
+    "blanc" = "#F5F5DC"
+  )
+
+  selle_data |>
+    mutate(
+      texture_label = texture_labels[as.character(texture)]
+    ) |>
+    ggplot(aes(x = datetime, y = texture)) +
+    geom_line(
+      color = colors[1],
+      linewidth = 1,
+      alpha = 0.6
+    ) +
+    geom_point(
+      aes(color = color),
+      size = 6,
+      shape = 16
+    ) +
+    scale_color_manual(
+      values = color_mapping,
+      na.value = "gray50",
+      guide = "none"
+    ) +
+    scale_x_datetime(date_labels = "%d %b", date_breaks = "1 day") +
+    scale_y_continuous(
+      breaks = 1:4,
+      labels = texture_labels,
+      limits = c(0.5, 4.5)
+    ) +
+    labs(
+      y = "Texture",
+      x = NULL
+    ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(face = "bold", size = 14),
+      panel.grid.minor = element_blank()
+    )
+} else {
+  plot.new()
+  text(0.5, 0.5, "Aucune donnée de selles disponible", cex = 1.2)
+}
+```

@@ -154,6 +154,28 @@ date,time,variable,value,unit,notes
 2025-12-20,05:00,biberon,105,ml,
 2025-12-20,08:30,biberon,120,ml,
 2025-12-20,09:00,poids,3.180,kg,
+2025-12-20,10:30,selle,2,texture,Couleur: jaune
 2025-12-20,12:00,biberon,110,ml,
+2025-12-20,14:30,selle,3,texture,Couleur: jaune
 2025-12-20,15:30,biberon,115,ml,
 2025-12-20,19:00,biberon,118,ml,
+2025-12-20,22:15,selle,2,texture,Couleur: marron
+2025-12-21,03:00,biberon,95,ml,
+2025-12-21,06:30,biberon,108,ml,
+2025-12-21,09:00,poids,3.200,kg,
+2025-12-21,09:45,selle,1,texture,Couleur: vert; un peu dur
+2025-12-21,10:15,biberon,115,ml,
+2025-12-21,13:45,biberon,120,ml,
+2025-12-21,17:15,biberon,118,ml,
+2025-12-21,18:30,selle,2,texture,Couleur: marron
+2025-12-21,20:45,biberon,112,ml,
+2025-12-22,00:15,biberon,100,ml,
+2025-12-22,03:45,biberon,110,ml,
+2025-12-22,07:15,biberon,122,ml,
+2025-12-22,08:00,selle,4,texture,Couleur: jaune; très liquide
+2025-12-22,09:00,poids,3.220,kg,
+2025-12-22,11:00,biberon,118,ml,
+2025-12-22,14:30,biberon,125,ml,
+2025-12-22,16:45,selle,3,texture,Couleur: jaune
+2025-12-22,18:00,biberon,120,ml,
+2025-12-22,21:30,biberon,115,ml,

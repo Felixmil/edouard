@@ -25,6 +25,18 @@ avg_milk_24h <- milk_24h |>
 n_bottles_24h <- milk_24h |>
   nrow()
 
+# Get selle data for last 24 hours
+selle_data <- get_selle_data(data)
+if (nrow(selle_data) > 0) {
+  latest_datetime <- max(selle_data$datetime, na.rm = TRUE)
+  cutoff_datetime <- latest_datetime - lubridate::hours(24)
+  n_selles_24h <- selle_data |>
+    filter(datetime >= cutoff_datetime) |>
+    nrow()
+} else {
+  n_selles_24h <- 0
+}
+
 # Get latest values
 latest_weight <- get_latest_weight(data)
 latest_size <- get_latest_size(data)
@@ -41,7 +53,7 @@ latest_size_date <- get_size_data(data) |>
 
 ```{r}
 layout_columns(
-  col_widths = c(6, 6, 6, 6),
+  col_widths = c(4, 4, 4, 4, 4, 4),
   value_box(
     title = "Poids",
     value = paste0(latest_weight, " kg"),
@@ -69,6 +81,13 @@ layout_columns(
     showcase = bsicons::bs_icon("moisture"),
     theme = "white",
     p("Moyenne sur les dernières 24h")
+  ),
+  value_box(
+    title = "Selles",
+    value = n_selles_24h,
+    showcase = bsicons::bs_icon("gift"),
+    theme = "white",
+    p("Sur les 24 dernières heures")
   )
 )
 ```

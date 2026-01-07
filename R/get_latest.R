@@ -167,3 +167,58 @@ get_latest_daily_volume <- function(data) {
     dplyr::pull(value) |>
     sum(na.rm = TRUE)
 }
+
+#' Get Selle Data
+#'
+#' Retrieves all selle (poop) entries with parsed texture and color information.
+#'
+#' @param data A data frame containing the measurement data with columns
+#'   `datetime`, `variable`, `value`, `unit`, and `notes`.
+#'
+#' @return A data frame with columns: datetime, texture (numeric value 1-4),
+#'   color (extracted from notes), and notes.
+#' @export
+#'
+#' @examples
+#' get_selle_data(example_data)
+get_selle_data <- function(data) {
+  selle_data <- data |> dplyr::filter(variable == "selle")
+  if (nrow(selle_data) == 0) {
+    return(data.frame(
+      datetime = lubridate::POSIXct(),
+      texture = numeric(),
+      color = character(),
+      notes = character()
+    ))
+  }
+
+  selle_data |>
+    dplyr::mutate(
+      texture = value,
+      color = stringr::str_extract(notes, "(?<=Couleur: )\\w+")
+    ) |>
+    dplyr::select(datetime, texture, color, notes)
+}
+
+#' Get Latest Selle
+#'
+#' Retrieves the datetime of the most recent selle (poop) entry.
+#'
+#' @param data A data frame containing the measurement data with columns
+#'   `datetime`, `variable`, and `value`.
+#'
+#' @return A POSIXct datetime of the most recent selle entry, or NA if no entries.
+#' @export
+#'
+#' @examples
+#' get_latest_selle(example_data)
+get_latest_selle <- function(data) {
+  selle_data <- data |> dplyr::filter(variable == "selle")
+  if (nrow(selle_data) == 0) {
+    return(as.POSIXct(NA))
+  }
+
+  selle_data |>
+    dplyr::slice_max(datetime, n = 1) |>
+    dplyr::pull(datetime)
+}
