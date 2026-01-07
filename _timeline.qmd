@@ -3,8 +3,8 @@
 ## 📅 Événements
 
 ```{r}
-#| fig.width: 10
-#| fig.height: !expr nrow(prepare_timeline_data(data)) * 0.5
+#| fig.asp: 2
+#| fig.width: 8.5
 
 plot_timeline(data)
 ```

@@ -238,3 +238,11 @@ date,time,variable,value,unit,notes
 2026-01-06,11:35,selle,3,texture,Couleur: jaune
 2026-01-06,15:20,selle,4,texture,Couleur: jaune
 2026-01-07,09:30,selle,3,texture,Couleur: jaune
+2026-01-07,00:30,biberon,65,ml,Réduction des doses suite à suspission de surcharge en lactose.
+2026-01-07,05:10,biberon,70,ml,
+2026-01-07,09:30,biberon,95,ml,
+2026-01-07,14:10,biberon,80,ml,
+2026-01-07,18:20,biberon,90,ml,
+2026-01-07,09:20,temperature,36.7,c,
+2026-01-06,14:00,evenement,,,"Suspission de surcharge en lactose, réduction progréssive des doses"
+2026-01-05,18:20,evenement,,,Habillé en taille naissance pour la première fois.
