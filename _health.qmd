@@ -6,17 +6,13 @@
 ### Températures
 
 ```{r}
-#| fig.width: 8
-#| fig.asp: 0.5
-
 temp_data <- get_temperature_data(data)
 
 if (nrow(temp_data) > 0) {
   colors <- edouard_colors()
 
-  plot_temp <- temp_data |>
+  temp_data |>
     mutate(
-      tooltip = if_else(!is.na(notes), notes, ""),
       has_notes = !is.na(notes)
     ) |>
     ggplot(aes(x = datetime, y = value)) +
@@ -50,13 +46,12 @@ if (nrow(temp_data) > 0) {
       linewidth = 1
     ) +
     # Points de mesure
-    geom_point_interactive(
-      aes(tooltip = tooltip, data_id = datetime, color = has_notes),
+    geom_point(
+      aes(color = has_notes),
       fill = "grey40",
       size = 2.5,
       stroke = 1,
-      shape = 21,
-      hover_nearest = TRUE
+      shape = 21
     ) +
     scale_color_manual(
       values = c("TRUE" = "black", "FALSE" = "grey40"),
@@ -71,38 +66,35 @@ if (nrow(temp_data) > 0) {
     theme(
       panel.grid.minor = element_blank()
     )
-
-  girafe(
-    ggobj = plot_temp,
-    options = list(opts_sizing(rescale = TRUE, width = .8))
-  )
 } else {
   cat("Aucune donnée de température à afficher.")
 }
 ```
 
 
-### Symptômes
+### Événements médicaux et symptômes
 
 ```{r}
-symptomes_data <- data |>
-  dplyr::filter(variable == "symptome") |>
+medical_data <- data |>
+  dplyr::filter(variable %in% c("evenement_medical", "symptome")) |>
   dplyr::arrange(dplyr::desc(datetime))
 
-if (nrow(symptomes_data) > 0) {
-  symptomes_data |>
-    dplyr::select(datetime, notes) |>
+if (nrow(medical_data) > 0) {
+  medical_data |>
+    dplyr::select(datetime, variable_label, notes) |>
     reactable(
       sortable = TRUE,
+      searchable = TRUE,
       columns = list(
         datetime = colDef(
           name = "Date et heure",
           format = colFormat(datetime = TRUE)
         ),
+        variable_label = colDef(name = "Type"),
         notes = colDef(name = "Description")
       )
     )
 } else {
-  cat("Aucun symptôme enregistré.")
+  cat("Aucun événement médical ou symptôme enregistré.")
 }
 ```

@@ -20,7 +20,7 @@ params:
 
 {{< include _dashboard.qmd >}}
 
-::: {.panel-tabset}
+::: {.panel-tabset .nav-pills}
 
 {{< include _weight.qmd >}}
 
