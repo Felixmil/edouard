@@ -2,7 +2,7 @@
 
 ## ℹ️ À propos
 
-::: {style="text-align: center; margin-top: 2em;"}
+::: {style="text-align: center; margin-top: 2em; background: #f8f9fa; padding: 2.5em 2em; border-radius: 12px; border: 1px solid #dee2e6; box-shadow: 0 2px 8px rgba(0,0,0,0.08);"}
 ![](https://avatars.githubusercontent.com/u/34234913?v=4){width=150 style="border-radius: 50%; border: 3px solid #e0e0e0;"}
 
 ### Félix Mil
@@ -16,3 +16,52 @@ Le code source est disponible sur [GitHub](https://github.com/Felixmil/edouard).
 Construit avec [Quarto](https://quarto.org/) et [R](https://www.r-project.org/)
 :::
 :::
+
+### 📝 Changelog
+
+```{r}
+#| echo: false
+#| results: asis
+
+# Get git log excluding "nouvelles données" commits
+git_log <- system(
+  "git log --pretty=format:'%h|%ad|%s' --date=short",
+  intern = TRUE
+)
+
+# Parse and filter commits
+commits <- data.frame(
+  hash = character(),
+  date = character(),
+  message = character(),
+  stringsAsFactors = FALSE
+)
+
+for (line in git_log) {
+  parts <- strsplit(line, "\\|")[[1]]
+  if (
+    length(parts) == 3 &&
+      !grepl("nouvelle|data|données", parts[3], ignore.case = TRUE)
+  ) {
+    commits <- rbind(
+      commits,
+      data.frame(
+        hash = parts[1],
+        date = parts[2],
+        message = parts[3],
+        stringsAsFactors = FALSE
+      )
+    )
+  }
+}
+
+if (nrow(commits) > 0) {
+  cat("\n::: {style='font-size: 0.9em;'}\n")
+  for (i in 1:nrow(commits)) {
+    cat(sprintf("- **%s**: %s\n", commits$date[i], commits$message[i]))
+  }
+  cat(":::\n")
+} else {
+  cat("_Aucune modification récente_\n")
+}
+```
