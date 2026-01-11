@@ -78,7 +78,8 @@ server <- function(input, output, session) {
       "temperature" = "c",
       "taille" = "cm",
       "selle" = "texture",
-      "evenement" = "",
+      "evenement_medical" = "",
+      "evenement_vie" = "",
       "symptome" = "",
       ""
     )

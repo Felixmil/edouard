@@ -1,5 +1,5 @@
 date,time,variable,value,unit,notes
-2025-12-11,16:27,evenement,,,Naissance.
+2025-12-11,16:27,evenement_vie,,,Naissance.
 2025-12-11,16:27,poids,2.27,kg,
 2025-12-12,08:30,poids,2.2,kg,
 2025-12-13,08:30,poids,2.18,kg,
@@ -10,7 +10,7 @@ date,time,variable,value,unit,notes
 2025-12-14,08:30,biberon,21,ml,
 2025-12-14,08:30,poids,2.12,kg,
 2025-12-14,11:30,biberon,35,ml,Passage au lait épaissi
-2025-12-14,11:30,evenement,,,Passage au lait épaissi.
+2025-12-14,11:30,evenement_medical,,,Passage au lait épaissi.
 2025-12-14,15:00,biberon,32,ml,
 2025-12-14,18:00,biberon,35,ml,
 2025-12-14,19:30,temperature,36.4,c,
@@ -52,7 +52,7 @@ date,time,variable,value,unit,notes
 2025-12-18,07:15,temperature,37,c,
 2025-12-18,07:30,biberon,85,ml,35 minutes
 2025-12-18,10:30,poids,2.23,kg,
-2025-12-18,10:35,evenement,,,Premier bain.
+2025-12-18,10:35,evenement_vie,,,Premier bain.
 2025-12-18,11:00,taille,44,cm,
 2025-12-18,11:15,biberon,35,ml,après son premier bain; 20 min
 2025-12-18,14:30,biberon,60,ml,
@@ -66,14 +66,14 @@ date,time,variable,value,unit,notes
 2025-12-19,09:00,biberon,55,ml,
 2025-12-19,12:30,poids,2.23,kg,
 2025-12-19,12:45,biberon,45,ml,
-2025-12-19,13:00,evenement,,,Fin d'utilisation du berceau chauffant.
+2025-12-19,13:00,evenement_vie,,,Fin d'utilisation du berceau chauffant.
 2025-12-19,15:30,temperature,36.8,c,première sieste dans berceau non chauffé
 2025-12-19,15:45,biberon,60,ml,
 2025-12-19,19:00,biberon,45,ml,
 2025-12-19,22:30,biberon,70,ml,
 2025-12-20,01:10,biberon,70,ml,30 minutes
 2025-12-20,04:50,biberon,70,ml,nurserie
-2025-12-20,04:40,evenement,,,Chute du cordon ombilical.
+2025-12-20,04:40,evenement_vie,,,Chute du cordon ombilical.
 2025-12-20,08:15,biberon,55,ml,25 minutes
 2025-12-20,11:30,temperature,36.9,c,
 2025-12-20,11:45,poids,2.27,kg,
@@ -91,7 +91,7 @@ date,time,variable,value,unit,notes
 2025-12-21,15:20,temperature,36.7,c,
 2025-12-21,15:20,biberon,60,ml,"Gros vomi, une tétine taille 0 pourrait mieux convenir."
 2025-12-21,19:00,biberon,66,ml,Tétine NUK
-2025-12-21,12:15,evenement,,,Retour au lait sans épaississant.
+2025-12-21,12:15,evenement_medical,,,Retour au lait sans épaississant.
 2025-12-21,23:00,biberon,70,ml,
 2025-12-22,03:00,biberon,100,ml,
 2025-12-22,07:40,biberon,85,ml,petit vomi
@@ -104,7 +104,7 @@ date,time,variable,value,unit,notes
 2025-12-23,01:12,biberon,90,ml,magic mix + tétine V0; 20 minutes
 2025-12-23,03:45,biberon,60,ml,nurserie
 2025-12-23,08:00,biberon,70,ml,
-2025-12-22,21:00,evenement,,,"Passage au lait avec épaississant ""Magic Mix"" 1%."
+2025-12-22,21:00,evenement_medical,,,"Passage au lait avec épaississant ""Magic Mix"" 1%."
 2025-12-19,19:00,symptome,,,Constipation
 2025-12-22,18:00,symptome,,,Nombreuses régurgitations
 2025-12-23,11:45,poids,2.38,kg,
@@ -126,7 +126,7 @@ date,time,variable,value,unit,notes
 2025-12-25,02:30,biberon,95,ml,chaud; 30 minutes
 2025-12-25,06:00,biberon,75,ml,
 2025-12-25,09:50,biberon,70,ml,
-2025-12-25,12:00,evenement,,,Bain
+2025-12-25,12:00,evenement_vie,,,Bain
 2025-12-25,13:45,biberon,90,ml,
 2025-12-25,11:45,poids,2.48,kg,
 2025-12-25,18:03,biberon,80,ml,Remplacement du Magic Mix par Gello Pectose
@@ -153,10 +153,10 @@ date,time,variable,value,unit,notes
 2025-12-28,09:45,biberon,70,ml,
 2025-12-28,14:15,biberon,85,ml,
 2025-12-28,17:45,biberon,45,ml,
-2025-12-28,17:30,evenement,,,Bain
+2025-12-28,17:30,evenement_vie,,,Bain
 2025-12-28,17:20,poids,2.65,kg,
 2025-12-28,21:33,biberon,90,ml,
-2025-12-28,21:00,evenement,,,Premier sortie en écharpe de portage (dans le couloir de la maternité)
+2025-12-28,21:00,evenement_vie,,,Premier sortie en écharpe de portage (dans le couloir de la maternité)
 2025-12-29,02:23,biberon,85,ml,
 2025-12-29,07:20,biberon,85,ml,
 2025-12-29,11:20,biberon,90,ml,
@@ -169,8 +169,8 @@ date,time,variable,value,unit,notes
 2025-12-30,11:05,biberon,85,ml,
 2025-12-30,15:00,biberon,60,ml,
 2025-12-30,18:30,biberon,90,ml,
-2025-12-29,14:30,evenement,,,Arrivée à la maison
-2025-12-29,14:15,evenement,,,"Premier trajet en voiture, calme"
+2025-12-29,14:30,evenement_vie,,,Arrivée à la maison
+2025-12-29,14:15,evenement_vie,,,"Premier trajet en voiture, calme"
 2025-12-30,22:45,biberon,80,ml,
 2025-12-31,03:20,biberon,90,ml,
 2025-12-31,08:40,biberon,90,ml,
@@ -182,7 +182,7 @@ date,time,variable,value,unit,notes
 2026-01-01,05:20,biberon,80,ml,
 2026-01-01,09:55,biberon,90,ml,
 2026-01-01,14:00,biberon,90,ml,
-2026-01-01,17:30,evenement,,,Premier bain à la maison
+2026-01-01,17:30,evenement_vie,,,Premier bain à la maison
 2026-01-01,18:00,biberon,70,ml,
 2026-01-01,22:00,biberon,88,ml,
 2026-01-02,02:54,biberon,115,ml,
@@ -191,7 +191,8 @@ date,time,variable,value,unit,notes
 2026-01-02,11:30,biberon,85,ml,
 2026-01-02,15:15,biberon,90,ml,
 2026-01-02,19:15,biberon,90,ml,
-2026-01-02,23:45,biberon,90,ml,Pasage au lait 1er age anti-regurgitations (Guigoz)
+2026-01-02,23:45,evenement_medical,,,Pasage au lait 1er age anti-regurgitations (Guigoz)
+2026-01-02,23:45,biberon,90,ml,
 2026-01-03,03:00,biberon,80,ml,
 2026-01-03,07:20,biberon,70,ml,
 2026-01-03,10:30,biberon,80,ml,
@@ -201,7 +202,8 @@ date,time,variable,value,unit,notes
 2026-01-03,22:15,biberon,120,ml,
 2026-01-04,03:13,biberon,75,ml,
 2026-01-04,08:00,biberon,120,ml,
-2026-01-04,12:14,biberon,115,ml,Nouvelle eau: Mont Roucous
+2026-01-04,12:14,evenement_medical,,,Nouvelle eau pour les biberons: Mont Roucous
+2026-01-04,12:14,biberon,115,ml,
 2026-01-04,16:05,biberon,115,ml,
 2026-01-04,20:05,biberon,110,ml,
 2026-01-05,01:18,biberon,115,ml,
@@ -210,7 +212,7 @@ date,time,variable,value,unit,notes
 2026-01-05,14:45,biberon,120,ml,
 2026-01-05,18:30,biberon,80,ml,Après le bain
 2026-01-05,18:00,poids,2.98,kg,
-2026-01-05,18:15,evenement,,,Bain
+2026-01-05,18:15,evenement_vie,,,Bain
 2026-01-05,22:18,biberon,100,ml,
 2026-01-06,02:20,biberon,100,ml,Nuit avec Mané
 2026-01-06,07:40,biberon,90,ml,
@@ -244,8 +246,8 @@ date,time,variable,value,unit,notes
 2026-01-07,14:10,biberon,80,ml,
 2026-01-07,18:20,biberon,90,ml,
 2026-01-07,09:20,temperature,36.7,c,
-2026-01-06,14:00,evenement,,,"Suspission de surcharge en lactose, réduction progréssive des doses"
-2026-01-05,18:20,evenement,,,Habillé en taille naissance pour la première fois.
+2026-01-06,14:00,evenement_medical,,,"Suspission de surcharge en lactose, réduction progréssive des doses"
+2026-01-05,18:20,evenement_vie,,,Habillé en taille naissance pour la première fois.
 2026-01-07,22:45,biberon,75,ml,
 2026-01-08,02:50,selle,3,texture,Couleur: jaune
 2026-01-08,03:00,biberon,60,ml,
@@ -258,7 +260,7 @@ date,time,variable,value,unit,notes
 2026-01-09,00:45,biberon,80,ml,
 2026-01-09,04:45,biberon,65,ml,
 2026-01-09,09:15,biberon,80,ml,
-2026-01-09,09:15,evenement,,,Consultation Ostéo
+2026-01-09,09:15,evenement_medical,,,Consultation Ostéo
 2026-01-09,09:30,selle,4,texture,"Couleur: jaune; Grande quantité, provoqué par la manipulation de l'ostéo"
 2026-01-09,13:30,biberon,95,ml,
 2026-01-09,17:45,biberon,95,ml,Calmosine 5ml avant le biberon

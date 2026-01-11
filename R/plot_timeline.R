@@ -7,15 +7,12 @@
 #' @export
 prepare_timeline_data <- function(data) {
   timeline_data <- data |>
-    # filter(variable %in% c("evenement", "symptome")) |>
-    filter(variable %in% c("evenement")) |>
+    # Filter for life events only (not medical events or symptoms)
+    filter(variable %in% c("evenement_vie")) |>
     arrange(datetime) |>
     mutate(
-      type = case_when(
-        variable == "evenement" ~ "Événement",
-        variable == "symptome" ~ "Symptôme"
-      ),
-      type = factor(type, levels = c("Événement", "Symptôme")),
+      type = "Événement",
+      type = factor(type),
       label = paste0(
         format(datetime, "%d/%m/%y %H:%M"),
         ": ",

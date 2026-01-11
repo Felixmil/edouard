@@ -43,7 +43,8 @@ ui <- fluidPage(
             "temperature",
             "taille",
             "selle",
-            "evenement",
+            "evenement_medical",
+            "evenement_vie",
             "symptome"
           ),
           selected = ""

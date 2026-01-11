@@ -34,6 +34,9 @@ process_edouard_data <- function(data) {
         variable %in% c("weight", "poids") ~ "⚖️",
         variable %in% c("size", "taille") ~ "📏",
         variable %in% c("evenement", "event") ~ "🔔",
+        variable %in% c("evenement_medical") ~ "💊",
+        variable %in% c("evenement_vie") ~ "🎉",
+        variable %in% c("symptome") ~ "🩺",
         TRUE ~ "📊"
       ),
       # Create human-readable variable label
@@ -43,6 +46,9 @@ process_edouard_data <- function(data) {
         variable %in% c("weight", "poids") ~ "Poids",
         variable %in% c("size", "taille") ~ "Taille",
         variable %in% c("evenement", "event") ~ "Événement",
+        variable %in% c("evenement_medical") ~ "Événement",
+        variable %in% c("evenement_vie") ~ "Événement",
+        variable %in% c("symptome") ~ "Symptôme",
         TRUE ~ variable
       ),
       # Add friendly description combining emoji, label, and value
