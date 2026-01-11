@@ -246,3 +246,29 @@ date,time,variable,value,unit,notes
 2026-01-07,09:20,temperature,36.7,c,
 2026-01-06,14:00,evenement,,,"Suspission de surcharge en lactose, réduction progréssive des doses"
 2026-01-05,18:20,evenement,,,Habillé en taille naissance pour la première fois.
+2026-01-07,22:45,biberon,75,ml,
+2026-01-08,02:50,selle,3,texture,Couleur: jaune
+2026-01-08,03:00,biberon,60,ml,
+2026-01-08,07:00,biberon,95,ml,
+2026-01-08,10:45,poids,3,kg,
+2026-01-08,11:00,biberon,95,ml,
+2026-01-08,15:45,biberon,75,ml,
+2026-01-08,15:40,selle,3,texture,Couleur: jaune
+2026-01-08,20:00,biberon,95,ml,
+2026-01-09,00:45,biberon,80,ml,
+2026-01-09,04:45,biberon,65,ml,
+2026-01-09,09:15,biberon,80,ml,
+2026-01-09,09:15,evenement,,,Consultation Ostéo
+2026-01-09,09:30,selle,4,texture,"Couleur: jaune; Grande quantité, provoqué par la manipulation de l'ostéo"
+2026-01-09,13:30,biberon,95,ml,
+2026-01-09,17:45,biberon,95,ml,Calmosine 5ml avant le biberon
+2026-01-09,21:45,biberon,95,ml,
+2026-01-10,03:20,biberon,70,ml,
+2026-01-10,08:05,biberon,90,ml,
+2026-01-10,12:15,biberon,80,ml,
+2026-01-10,13:00,selle,3,texture,Couleur: jaune
+2026-01-10,16:30,biberon,100,ml,
+2026-01-10,20:40,biberon,85,ml,
+2026-01-11,00:40,biberon,110,ml,
+2026-01-11,05:00,biberon,90,ml,
+2026-01-11,10:00,biberon,90,ml,
