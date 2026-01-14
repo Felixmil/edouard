@@ -49,7 +49,10 @@ if (nrow(selle_data) > 0) {
       fontface = "bold"
     ) +
     scale_x_date(date_labels = "%d %b", date_breaks = "1 day") +
-    scale_y_continuous(expand = expansion(mult = c(0, 0.15)), breaks = scales::pretty_breaks()) +
+    scale_y_continuous(
+      expand = expansion(mult = c(0, 0.15)),
+      breaks = scales::pretty_breaks()
+    ) +
     labs(
       y = "Nombre de selles",
       x = NULL
@@ -59,8 +62,8 @@ if (nrow(selle_data) > 0) {
       plot.title = element_text(face = "bold", size = 14),
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),
-      axis.text.y = element_blank()
-
+      axis.text.y = element_blank(),
+      axis.text.x = element_text(angle = 45, hjust = 1)
     )
 } else {
   plot.new()
@@ -84,6 +87,7 @@ if (nrow(selle_data) > 0) {
   color_mapping <- c(
     "marron" = "#8B4513",
     "jaune" = "#FFD700",
+    "ocre" = "#DC793A",
     "vert" = "#228B22",
     "noir" = "#2F4F4F",
     "rouge" = "#DC143C",
@@ -123,7 +127,8 @@ if (nrow(selle_data) > 0) {
     theme_minimal() +
     theme(
       plot.title = element_text(face = "bold", size = 14),
-      panel.grid.minor = element_blank()
+      panel.grid.minor = element_blank(),
+      axis.text.x = element_text(angle = 45, hjust = 1)
     )
 } else {
   plot.new()

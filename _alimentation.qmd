@@ -38,7 +38,7 @@ ggplot(daily_volume, aes(x = date_only, y = total_volume)) +
   geom_text(
     aes(label = round(total_volume)),
     vjust = -0.5,
-    size = 3,
+    size = 2.5,
     color = "gray30",
     fontface = "bold"
   ) +

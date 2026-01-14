@@ -109,12 +109,14 @@ ui <- fluidPage(
             "Couleur:",
             choices = c(
               "",
-              "marron",
+
               "jaune",
+              "ocre",
               "vert",
+              "blanc",
               "noir",
-              "rouge",
-              "blanc"
+              "marron",
+              "rouge"
             ),
             selected = ""
           )
