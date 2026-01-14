@@ -222,21 +222,21 @@ date,time,variable,value,unit,notes
 2025-12-29,18:15,selle,3,texture,Couleur: jaune
 2025-12-30,11:05,selle,4,texture,Couleur: jaune
 2025-12-31,08:40,selle,4,texture,Couleur: jaune
-2025-12-31,11:15,selle,4,texture,Couleur: vert
-2025-12-31,12:15,selle,4,texture,Couleur: vert
-2026-01-01,00:20,selle,4,texture,Couleur: vert
-2026-01-01,05:20,selle,4,texture,Couleur: vert
-2026-01-01,09:56,selle,4,texture,Couleur: vert
-2026-01-02,19:15,selle,4,texture,Couleur: vert
-2026-01-03,14:40,selle,4,texture,Couleur: vert
-2026-01-04,03:13,selle,4,texture,Couleur: vert
-2026-01-04,12:15,selle,4,texture,Couleur: vert
-2026-01-04,13:15,selle,4,texture,Couleur: vert
-2026-01-05,06:08,selle,4,texture,Couleur: vert
-2026-01-05,10:30,selle,4,texture,Couleur: vert
-2026-01-05,14:45,selle,4,texture,Couleur: vert
-2026-01-05,18:20,selle,4,texture,Couleur: vert
-2026-01-06,07:40,selle,4,texture,Couleur: vert
+2025-12-31,11:15,selle,4,texture,Couleur: ocre
+2025-12-31,12:15,selle,4,texture,Couleur: ocre
+2026-01-01,00:20,selle,4,texture,Couleur: ocre
+2026-01-01,05:20,selle,4,texture,Couleur: ocre
+2026-01-01,09:56,selle,4,texture,Couleur: ocre
+2026-01-02,19:15,selle,4,texture,Couleur: ocre
+2026-01-03,14:40,selle,4,texture,Couleur: ocre
+2026-01-04,03:13,selle,4,texture,Couleur: ocre
+2026-01-04,12:15,selle,4,texture,Couleur: ocre
+2026-01-04,13:15,selle,4,texture,Couleur: ocre
+2026-01-05,06:08,selle,4,texture,Couleur: ocre
+2026-01-05,10:30,selle,4,texture,Couleur: ocre
+2026-01-05,14:45,selle,4,texture,Couleur: ocre
+2026-01-05,18:20,selle,4,texture,Couleur: ocre
+2026-01-06,07:40,selle,4,texture,Couleur: ocre
 2026-01-06,11:35,selle,3,texture,Couleur: jaune
 2026-01-06,15:20,selle,4,texture,Couleur: jaune
 2026-01-07,09:30,selle,3,texture,Couleur: jaune
@@ -276,3 +276,34 @@ date,time,variable,value,unit,notes
 2026-01-11,10:00,biberon,90,ml,
 2026-01-11,11:00,selle,4,texture,Couleur: jaune
 2026-01-11,13:00,selle,4,texture,Couleur: jaune
+2026-01-11,14:30,biberon,90,ml,
+2026-01-11,18:30,biberon,100,ml,
+2026-01-11,18:00,poids,3.01,kg,
+2026-01-11,22:30,biberon,95,ml,
+2026-01-11,23:00,selle,4,texture,Couleur: ocre
+2026-01-12,03:40,biberon,95,ml,
+2026-01-12,08:45,biberon,95,ml,
+2026-01-12,12:00,selle,4,texture,Couleur: ocre
+2026-01-12,12:50,biberon,90,ml,
+2026-01-12,17:00,biberon,90,ml,
+2026-01-12,21:00,biberon,90,ml,
+2026-01-12,22:00,selle,4,texture,Couleur: ocre
+2026-01-13,01:45,biberon,115,ml,
+2026-01-13,05:45,biberon,110,ml,
+2026-01-13,10:00,biberon,115,ml,
+2026-01-13,13:40,biberon,100,ml,
+2026-01-13,18:15,biberon,110,ml,
+2026-01-13,19:00,selle,4,texture,Couleur: ocre
+2026-01-13,22:02,biberon,115,ml,
+2026-01-14,03:10,biberon,120,ml,
+2026-01-14,03:10,biberon,120,ml,
+2026-01-14,08:00,biberon,110,ml,
+2026-01-14,11:00,evenement_medical,,,Visite medicale: 1 mois.
+2026-01-14,11:00,poids,3.15,kg,
+2026-01-14,11:00,taille,49,cm,
+2026-01-14,12:30,biberon,100,ml,
+2026-01-14,12:30,selle,4,texture,Couleur: ocre
+2026-01-14,13:00,selle,4,texture,Couleur: ocre
+2026-01-14,17:30,biberon,115,ml,
+2026-01-14,11:00,symptome,,,Plagiocéphalie coté gauche
+2026-01-13,16:00,temperature,36.7,c,
