@@ -330,3 +330,42 @@ date,time,variable,value,unit,notes
 2026-01-17,15:00,selle,3,texture,Couleur: ocre
 2026-01-17,17:15,biberon,125,ml,
 2026-01-17,17:40,selle,3,texture,Couleur: ocre
+2026-01-17,22:00,biberon,125,ml,
+2026-01-18,03:00,biberon,120,ml,
+2026-01-18,08:00,biberon,125,ml,
+2026-01-18,11:45,biberon,125,ml,
+2026-01-18,12:00,selle,3,texture,Couleur: ocre
+2026-01-18,16:30,biberon,125,ml,
+2026-01-18,19:45,evenement_vie,,,Bain
+2026-01-18,21:30,biberon,125,ml,
+2026-01-18,22:00,selle,3,texture,Couleur: ocre
+2026-01-19,02:00,biberon,120,ml,
+2026-01-19,07:00,biberon,125,ml,
+2026-01-19,07:30,selle,3,texture,Couleur: ocre
+2026-01-19,10:30,biberon,125,ml,
+2026-01-19,14:30,biberon,125,ml,
+2026-01-19,18:45,biberon,120,ml,
+2026-01-19,22:25,biberon,120,ml,
+2026-01-19,22:30,selle,3,texture,Couleur: ocre
+2026-01-20,02:30,biberon,120,ml,
+2026-01-20,07:45,biberon,120,ml,
+2026-01-20,10:30,evenement_medical,,,Kiné
+2026-01-20,08:30,selle,3,texture,Couleur: ocre
+2026-01-20,12:00,biberon,120,ml,
+2026-01-20,16:30,biberon,115,ml,
+2026-01-20,20:30,biberon,125,ml,
+2026-01-20,20:40,selle,3,texture,Couleur: ocre
+2026-01-21,02:00,biberon,120,ml,
+2026-01-21,07:00,biberon,120,ml,
+2026-01-21,09:00,selle,3,texture,Couleur: ocre
+2026-01-21,11:00,biberon,125,ml,
+2026-01-21,15:30,biberon,105,ml,
+2026-01-21,19:00,evenement_vie,,,Bain
+2026-01-21,18:54,poids,3.3,kg,
+2026-01-21,19:40,biberon,120,ml,
+2026-01-21,23:40,biberon,125,ml,
+2026-01-22,04:40,biberon,125,ml,
+2026-01-22,10:30,biberon,125,ml,
+2026-01-22,14:50,biberon,120,ml,
+2026-01-22,15:30,selle,3,texture,Couleur: ocre
+2026-01-22,19:10,biberon,120,ml,
